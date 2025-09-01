@@ -8,67 +8,44 @@
   <link rel="icon" href="data:," />
   <style>
     :root{
-      --bg:#ffffff; --card:#ffffff; --ink:#0b0e14; --muted:#475569; --acc:#2563eb; --acc2:#9333ea;
+      --bg:#0b0e14; --card:#121826; --ink:#e6e8ef; --muted:#a6adbb; --acc:#7dd3fc; --acc2:#a78bfa;
       --radius:18px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#0e1220);color:var(--ink);font:16px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"}
     .wrap{max-width:980px;margin:auto;padding:32px}
     header{display:flex;gap:24px;align-items:center;justify-content:space-between;margin-top:8px;margin-bottom:24px}
     .brand{display:flex;gap:16px;align-items:center}
     .avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--acc2));display:grid;place-items:center;color:#0b0e14;font-weight:800}
-    nav a{color:var(--muted);text-decoration:none;margin-left:16px;padding:6px 8px;border-radius:8px}
-    nav a:hover{color:var(--ink);background:#0f1629}
-    nav a.active{color:#0b0e14;background:linear-gradient(135deg,var(--acc),var(--acc2));font-weight:700}
+    nav a{color:var(--muted);text-decoration:none;margin-left:16px}
     nav a:hover{color:var(--ink)}
-    .hero{background:linear-gradient(180deg,rgba(125,211,252,.08),rgba(167,139,250,.08));border:1px solid #e5e7eb;padding:28px;border-radius:var(--radius);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .hero{background:linear-gradient(180deg,rgba(125,211,252,.08),rgba(167,139,250,.08));border:1px solid #1f2937;padding:28px;border-radius:var(--radius);box-shadow:0 10px 30px rgba(0,0,0,.35)}
     h1{font-size:28px;line-height:1.2;margin:0 0 8px 0}
     .tag{color:var(--muted)}
     .row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:22px}
-    .card{background:var(--card);border:1px solid #e5e7eb;border-radius:var(--radius);padding:20px}
+    .card{background:var(--card);border:1px solid #1f2937;border-radius:var(--radius);padding:20px}
     h2{font-size:18px;margin:0 0 8px 0}
     ul{padding-left:18px;margin:8px 0}
     li{margin:6px 0}
     a{color:var(--acc);}
     a:hover{color:#b3e1ff}
     .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-    .chip{background:#f8fafc;border:1px solid #e5e7eb;color:var(--muted);font-size:13px;border-radius:999px;padding:6px 10px}
+    .chip{background:#111827;border:1px solid #1f2937;padding:6px 10px;border-radius:999px;color:var(--muted);font-size:13px}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:22px}
     .cta{display:flex;gap:10px;margin-top:14px}
     .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:1px solid #334155;text-decoration:none;color:var(--ink)}
     .btn.primary{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#0b0e14;font-weight:700}
     footer{margin:50px 0 10px 0;color:var(--muted);font-size:14px;text-align:center}
     @media (max-width:900px){.row,.grid{grid-template-columns:1fr}}
-    .page{display:none}
-    .page.active{display:block}
-    .year{margin-top:18px}
-    .year h2{margin:0 0 8px 0}
-    .note{font-size:13px;color:var(--muted)}
     .pub{display:grid;grid-template-columns:140px 1fr;gap:16px;padding:16px 0;border-top:1px solid #1f2937}
   .pub:first-of-type{border-top:none}
-  .pub img{width:140px;height:100px;object-fit:cover;border-radius:12px;border:1px solid #e5e7eb;background:#0f1629}
+  .pub img{width:140px;height:100px;object-fit:cover;border-radius:12px;border:1px solid #263244;background:#0f1629}
   .pub .meta h3{margin:0 0 6px 0;font-size:16px}
   .pub .meta .by{color:var(--muted);font-size:14px;margin-bottom:6px}
   .pub .meta .where{color:var(--muted);font-size:13px}
   .pub .meta .links a{margin-right:10px}
   .caption{color:var(--muted);font-size:12px;margin-top:4px}
-  .honors{background:linear-gradient(180deg,rgba(167,139,250,.12),rgba(125,211,252,.10));border:1px solid #e5e7eb;border-radius:var(--radius);padding:22px;margin-top:22px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
-  .honors h2{margin-top:0}
-  .honor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .honor{background:#0f1629;border:1px solid #e5e7eb;border-radius:14px;padding:12px}
-  .honor .title{font-weight:700}
-  .honor .when{color:var(--muted);font-size:13px}
-  @media (max-width:900px){.honor-grid{grid-template-columns:1fr}}
-
-  /* Interactive viz */
-  .viz{display:grid;grid-template-columns:1fr;gap:20px;margin-top:10px}
-  .panel{background:var(--card);border:1px solid #e5e7eb;border-radius:var(--radius);padding:16px}
-  .controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px}
-  .controls label{font-size:13px;color:var(--muted)}
-  .readout{font-size:13px;color:var(--muted)}
-  canvas{max-width:100%;height:auto}
-
 </style>
 </head>
 <body>
@@ -82,213 +59,173 @@
         </div>
       </div>
       <nav>
-        <a href="#/about">About</a>
-        <a href="#/publications">Publications</a>
-        <a href="#/awards">Awards</a>
-        <a href="#/press">Press & Talks</a>
-        <a href="#/teaching">Teaching</a>
-        <a href="#/service">Service</a>
-        <a href="#/cv">CV</a>
-        <a href="#/contact">Contact</a>
-        <span class="theme-toggle"><button id="themeToggle" aria-label="Toggle theme" onclick="(function(){const r=document.documentElement;const k='theme';const d=r.getAttribute('data-theme')==='dark';const n=d?'light':'dark';if(n==='dark')r.setAttribute('data-theme','dark');else r.removeAttribute('data-theme');localStorage.setItem(k,n);this.textContent=n==='dark'?'☀️ Light':'🌙 Dark';})();">🌙 Dark</button></span>
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#pubs">Publications</a>
+        <a href="#deep">Deep Research</a>
+        <a href="#cv">CV</a>
+        <a href="#contact">Contact</a>
       </nav>
     </header>
 
-    <section class="page active" data-page="about">
-      <section class="hero" id="about">
-        <h1>Hi—I'm <strong>Yuiki Takahashi</strong>.</h1>
-        <p class="tag">PhD candidate in Physics at Caltech (Hutzler Group). I engineer field‑insensitive molecular clock transitions (\"magic\" transitions) with strong sensitivity to symmetry‑violating effects (e.g., eEDM), and I build computational/ML tools for experiment design and control.</p>
-        <div class="chips">
-          <span class="chip">AMO • eEDM • YbOH</span>
-          <span class="chip">Quantum Sensing</span>
-          <span class="chip">AI for Experiments</span>
-        </div>
-        <div class="cta">
-          <a class="btn primary" href="#/publications">See publications</a>
-          <a class="btn" href="#/cv">Download CV</a>
-        </div>
-      </section>
+    <section class="hero" id="about">
+      <h1>Hi—I'm <strong>Yuiki Takahashi</strong>.</h1>
+      <p class="tag">PhD candidate in Physics at Caltech (Hutzler Group). I engineer field‑insensitive molecular clock transitions (\"magic\" transitions) with strong sensitivity to symmetry‑violating effects (e.g., eEDM), and I build computational/ML tools for experiment design and control.</p>
+      <div class="chips">
+        <span class="chip">AMO • eEDM • YbOH</span>
+        <span class="chip">Quantum Sensing</span>
+        <span class="chip">AI for Experiments</span>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="#pubs">See publications</a>
+        <a class="btn" href="#cv">Download CV</a>
+      </div>
+    </section>
 
-      <section class="honors" id="honors">
+    <div class="row" id="research">
+      <div class="card">
+        <h2>Research Focus</h2>
+        <ul>
+          <li>Engineered molecular clock transitions for symmetry‑violation searches.</li>
+          <li>Field‑noise‑robust spectroscopy & precision metrology.</li>
+          <li>Machine‑learning tools for experiment design & control.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>News</h2>
+        <ul>
+          <li>Aug 15, 2025 — Talk at Ketterle group, MIT: <em>Engineered molecular clock transitions for robust quantum sensing of new physics</em>.</li>
+          <li>Jul 22, 2025 — Talk at Krenn group, University of Tübingen.</li>
+          <li>Jun 3, 2025 — AMO seminar at Caltech.</li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="card" id="pubs">
+      <h2>Selected Publications</h2>
+
+      <article class="pub">
+        <img src="img/yboh_magic.jpg" alt="Contour of field-insensitive (magic) transition in YbOH with Stark/Zeeman cancellation"/>
+        <div class="meta">
+          <h3><strong>Engineered Molecular Clock Transitions for Symmetry Violation Searches</strong></h3>
+          <div class="by">Y. Takahashi, H. D. Ramachandran, A. Jadbabaie, Y. Zeng, C. Zhang, N. R. Hutzler</div>
+          <div class="where"><em>arXiv:2508.06787</em> (2025)</div>
+          <div>We demonstrate clock transitions whose electric and magnetic sensitivities are simultaneously suppressed ("magic"/CP‑FIT), while retaining high eEDM response.</div>
+          <div class="links"><a href="https://arxiv.org/abs/2508.06787">arXiv</a></div>
+          <div class="caption">Image idea: Energy-level diagram + measured cancellation contours. Replace with your own figure at <code>/img/yboh_magic.jpg</code>.</div>
+        </div>
+      </article>
+
+      <article class="pub">
+        <img src="img/yboh_engineering.jpg" alt="Engineered field-insensitive molecular transition schematic"/>
+        <div class="meta">
+          <h3><strong>Engineering field‑insensitive molecular clock transitions for symmetry violation searches</strong></h3>
+          <div class="by">Y. Takahashi, C. Zhang, A. Jadbabaie, N. R. Hutzler</div>
+          <div class="where"><em>Phys. Rev. Lett.</em> 131, 183003 (2023)</div>
+          <div>Concept & design principles for creating field‑noise‑robust molecular clock transitions applicable across platforms.</div>
+          <div class="links"><a href="#">Journal</a></div>
+          <div class="caption">Image idea: cartoon of Stark/Zeeman slopes canceling at magic E,B. Save as <code>/img/yboh_engineering.jpg</code>.</div>
+        </div>
+      </article>
+
+      <article class="pub">
+        <img src="img/yboh_bending.jpg" alt="Bending vibration mode (v2) in YbOH and l-doubling structure"/>
+        <div class="meta">
+          <h3><strong>Characterizing the Fundamental Bending Vibration of a Linear Polyatomic Molecule for Symmetry Violation Searches</strong></h3>
+          <div class="by">A. Jadbabaie*, Y. Takahashi* et al. (*equal contribution)</div>
+          <div class="where"><em>New J. Phys.</em> 25, 073014 (2023)</div>
+          <div>Precision spectroscopy of the v<sub>2</sub> bending mode and l‑doubling—key enablers for polyatomic eEDM sensitivity and state control.</div>
+          <div class="links"><a href="#">Journal</a></div>
+          <div class="caption">Image idea: level diagram of X(010)/A(010) with parity doubling. Save as <code>/img/yboh_bending.jpg</code>.</div>
+        </div>
+      </article>
+
+      <article class="pub">
+        <img src="img/yb_mqm.jpg" alt="Optically trapped Yb atoms in metastable state for MQM measurement"/>
+        <div class="meta">
+          <h3><strong>Measuring the nuclear magnetic quadrupole moment of optically trapped ytterbium atoms in the metastable state</strong></h3>
+          <div class="by">A. Sunaga, Y. Takahashi, A. Vutha, Y. Takahashi</div>
+          <div class="where"><em>New J. Phys.</em> 26, 023023 (2024)</div>
+          <div>Atomic platform toward symmetry‑violating nuclear moments with optical trapping and precision spectroscopy.</div>
+          <div class="links"><a href="#">Journal</a></div>
+          <div class="caption">Image idea: optical lattice / trap + MQM coupling cartoon. Save as <code>/img/yb_mqm.jpg</code>.</div>
+        </div>
+      </article>
+
+      <article class="pub">
+        <img src="img/bgb_sim.jpg" alt="Cryogenic buffer-gas beam simulation and flux profiles"/>
+        <div class="meta">
+          <h3><strong>Simulation of cryogenic buffer gas beams</strong></h3>
+          <div class="by">Y. Takahashi, D. Shlivko, G. Woolls, N. R. Hutzler</div>
+          <div class="where"><em>Phys. Rev. Research</em> 3, 023018 (2021)</div>
+          <div>Modeling and validating source dynamics and beam properties for cold‑molecule experiments.</div>
+          <div class="links"><a href="#">Journal</a></div>
+          <div class="caption">Image idea: simulated density/velocity maps. Save as <code>/img/bgb_sim.jpg</code>.</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="card" id="deep">
+      <h2>Research in Depth</h2>
+      <h3>Motivation: symmetry violation & new physics</h3>
+      <p>Electric dipole moments (EDMs) and related moments (e.g., nuclear MQMs) probe CP‑violation far beyond collider energies. Molecules offer large internal effective fields, but typical transitions are hypersensitive to ambient E/B noise, which degrades coherence and introduces systematics.</p>
+
+      <h3>Key idea: Magic (field‑insensitive) molecular clock transitions</h3>
+      <p>We identify pairs of states whose Stark/Zeeman slopes cancel at tunable external fields (E,B), engineering <em>clock‑like</em> transitions with vanishing first‑order sensitivities while preserving large internal CP‑sensitive matrix elements. We refer to these as CP‑FITs (CP‑sensitive, field‑insensitive transitions).</p>
+      <ul>
+        <li><strong>Design:</strong> Build an effective Hamiltonian (rotational, spin‑rotation, hyperfine, l‑doubling, Stark, Zeeman), diagonalize vs. E,B; locate points where ∂ω/∂E≈0 and ∂ω/∂B≈0.</li>
+        <li><strong>Implementation:</strong> Choose polarization/geometries to minimize vector/tensor shifts; exploit parity doublets and hyperfine mixing for tunability.</li>
+        <li><strong>Outcome:</strong> Orders‑of‑magnitude suppression of E/B noise while maintaining strong eEDM response; longer coherence; reduced systematics.</li>
+      </ul>
+
+      <h3>Generalization across platforms</h3>
+      <p>The strategy applies to linear and polyatomic molecules (e.g., YbOH bending modes with l‑doubling), molecular ions, and potentially atomic systems with near‑degenerate structure. It interfaces naturally with Ramsey spectroscopy, beam or trapped experiments, and optical cycling readout.</p>
+
+      <h3>AI/ML for experiment design</h3>
+      <ul>
+        <li><strong>Active optimization:</strong> Bayesian/gradient‑free tuning of E,B, polarization, and timing for maximum coherence & eEDM sensitivity under constraints.</li>
+        <li><strong>System identification:</strong> Fit Hamiltonian parameters from spectra (with uncertainty quantification) to predict new CP‑FITs.</li>
+        <li><strong>Control:</strong> Robust pulse design with reinforcement learning / optimal control for state prep and readout.</li>
+      </ul>
+
+      <h3>Selected experimental highlights</h3>
+      <ul>
+        <li>Demonstrated simultaneous suppression of electric and magnetic sensitivities while retaining eEDM response.</li>
+        <li>Validated with intentional E/B noise injection and Ramsey fringe measurements.</li>
+        <li>Outlined extension to MQM‑sensitive platforms and networked sensors.</li>
+      </ul>
+
+      <p class="caption">Want more detail? Add figures here (e.g., experimental schematic, Ramsey data). Save as <code>/img/</code> and embed below.</p>
+    </section>
+
+    <div class="grid">
+      <div class="card" id="cv">
+        <h2>CV</h2>
+        <p>Place your current CV (PDF) at <code>/cv.pdf</code> and link it here:</p>
+        <p><a href="cv.pdf">Download my CV</a></p>
+      </div>
+      <div class="card">
         <h2>Honors & Awards</h2>
-        <div class="honor-grid">
-          <div class="honor"><div class="title">Tombrello Scholarship</div><div class="when">Jun 2025 – present</div></div>
-          <div class="honor"><div class="title">IQIM Eddleman Fellowship</div><div class="when">Sep 2023 – Sep 2024</div></div>
-          <div class="honor"><div class="title">John S. Stemple Memorial Prize</div><div class="when">May 2023</div></div>
-          <div class="honor"><div class="title">Masason Foundation Research Grant</div><div class="when">Jul 2021 – Jun 2023</div></div>
-          <div class="honor"><div class="title">Masason Foundation Fellowship</div><div class="when">2018 – 2023</div></div>
-          <div class="honor"><div class="title">JPS Student Presentation Award</div><div class="when">Mar 2021</div></div>
-        </div>
-      </section>
-
-      <div class="row" id="research">
-        <div class="card">
-          <h2>Research Focus</h2>
-          <ul>
-            <li>Engineered molecular clock transitions for symmetry‑violation searches.</li>
-            <li>Field‑noise‑robust spectroscopy & precision metrology.</li>
-            <li>Machine‑learning tools for experiment design & control.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h2>News</h2>
-          <ul>
-            <li>Aug 15, 2025 — Talk at Ketterle group, MIT: <em>Engineered molecular clock transitions for robust quantum sensing of new physics</em>.</li>
-            <li>Jul 22, 2025 — Talk at Krenn group, University of Tübingen.</li>
-            <li>Jun 3, 2025 — AMO seminar at Caltech.</li>
-          </ul>
-        </div>
+        <ul>
+          <li>Tombrello Scholarship (Jun 2025–present)</li>
+          <li>IQIM Eddleman Fellowship (Sep 2023–Sep 2024)</li>
+          <li>John S. Stemple Memorial Prize (May 2023)</li>
+          <li>Masason Foundation Research Grant (Jul 2021–Jun 2023)</li>
+          <li>Masason Foundation Fellowship (2018–2023)</li>
+          <li>JPS Student Presentation Award (Mar 2021)</li>
+        </ul>
       </div>
-    </section>
-
-    <section class="page" data-page="publications">
-      <section class="card">
-        <h2>Publications</h2>
-        <p class="note">* indicates equal contribution.</p>
-        <div class="year">
-          <h2>2025</h2>
-          <article class="pub">
-            <img src="img/yboh_magic.jpg" alt="Contour of field-insensitive (magic) transition in YbOH with Stark/Zeeman cancellation"/>
-            <div class="meta">
-              <h3><strong>Engineered Molecular Clock Transitions for Symmetry Violation Searches</strong></h3>
-              <div class="by">Y. Takahashi, H. D. Ramachandran, A. Jadbabaie, Y. Zeng, C. Zhang, N. R. Hutzler</div>
-              <div class="where"><em>arXiv:2508.06787</em> (2025)</div>
-              <div>We demonstrate clock transitions whose electric and magnetic sensitivities are simultaneously suppressed (\"magic\"/CP‑FIT), while retaining high eEDM response.</div>
-              <div class="links"><a href="https://arxiv.org/abs/2508.06787">arXiv</a></div>
-            </div>
-          </article>
-        </div>
-
-        <div class="year">
-          <h2>2024</h2>
-          <article class="pub">
-            <img src="img/yb_mqm.jpg" alt="Optically trapped Yb atoms in metastable state for MQM measurement"/>
-            <div class="meta">
-              <h3><strong>Measuring the nuclear magnetic quadrupole moment of optically trapped ytterbium atoms in the metastable state</strong></h3>
-              <div class="by">A. Sunaga, Y. Takahashi, A. Vutha, Y. Takahashi</div>
-              <div class="where"><em>New J. Phys.</em> 26, 023023 (2024)</div>
-              <div>Atomic platform toward symmetry‑violating nuclear moments with optical trapping and precision spectroscopy.</div>
-              <div class="links"><a href="#">Journal</a></div>
-            </div>
-          </article>
-        </div>
-
-        <div class="year">
-          <h2>2023</h2>
-          <article class="pub">
-            <img src="img/yboh_engineering.jpg" alt="Engineered field-insensitive molecular transition schematic"/>
-            <div class="meta">
-              <h3><strong>Engineering field‑insensitive molecular clock transitions for symmetry violation searches</strong></h3>
-              <div class="by">Y. Takahashi, C. Zhang, A. Jadbabaie, N. R. Hutzler</div>
-              <div class="where"><em>Phys. Rev. Lett.</em> 131, 183003 (2023)</div>
-              <div>Concept & design principles for creating field‑noise‑robust molecular clock transitions applicable across platforms.</div>
-              <div class="links"><a href="#">Journal</a></div>
-            </div>
-          </article>
-          <article class="pub">
-            <img src="img/yboh_bending.jpg" alt="Bending vibration mode (v2) in YbOH and l-doubling structure"/>
-            <div class="meta">
-              <h3><strong>Characterizing the Fundamental Bending Vibration of a Linear Polyatomic Molecule for Symmetry Violation Searches</strong></h3>
-              <div class="by">A. Jadbabaie*, Y. Takahashi* et al. <small>(*equal contribution)</small></div>
-              <div class="where"><em>New J. Phys.</em> 25, 073014 (2023)</div>
-              <div>Precision spectroscopy of the v<sub>2</sub> bending mode and l‑doubling—key enablers for polyatomic eEDM sensitivity and state control.</div>
-              <div class="links"><a href="#">Journal</a></div>
-            </div>
-          </article>
-        </div>
-
-        <div class="year">
-          <h2>2021</h2>
-          <article class="pub">
-            <img src="img/bgb_sim.jpg" alt="Cryogenic buffer-gas beam simulation and flux profiles"/>
-            <div class="meta">
-              <h3><strong>Simulation of cryogenic buffer gas beams</strong></h3>
-              <div class="by">Y. Takahashi, D. Shlivko, G. Woolls, N. R. Hutzler</div>
-              <div class="where"><em>Phys. Rev. Research</em> 3, 023018 (2021)</div>
-              <div>Modeling and validating source dynamics and beam properties for cold‑molecule experiments.</div>
-              <div class="links"><a href="#">Journal</a></div>
-            </div>
-          </article>
-        </div>
-      </section>
-    </section>
-
-    <section class="page" data-page="awards">
-      <section class="honors">
-        <h2>Awards</h2>
-        <div class="honor-grid">
-          <div class="honor"><div class="title">Tombrello Scholarship</div><div class="when">Jun 2025 – present</div></div>
-          <div class="honor"><div class="title">IQIM Eddleman Fellowship</div><div class="when">Sep 2023 – Sep 2024</div></div>
-          <div class="honor"><div class="title">John S. Stemple Memorial Prize</div><div class="when">May 2023</div></div>
-          <div class="honor"><div class="title">Masason Foundation Research Grant</div><div class="when">Jul 2021 – Jun 2023</div></div>
-          <div class="honor"><div class="title">Masason Foundation Fellowship</div><div class="when">2018 – 2023</div></div>
-          <div class="honor"><div class="title">JPS Student Presentation Award</div><div class="when">Mar 2021</div></div>
-        </div>
-      </section>
-    </section>
-
-    <section class="page" data-page="press">
-      <section class="card">
-        <h2>Press & Talks</h2>
-        <h3>Talks</h3>
+      <div class="card" id="contact">
+        <h2>Contact</h2>
         <ul>
-          <li>Aug 15, 2025 — MIT (Ketterle group): <em>Engineered molecular clock transitions...</em></li>
-          <li>Jul 22, 2025 — University of Tübingen (Krenn group).</li>
-          <li>Jun 3, 2025 — Caltech AMO seminar.</li>
+          <li>Email (Caltech): <a href="mailto:yuiki@caltech.edu">yuiki@caltech.edu</a></li>
+          <li>Email (Gmail): <a href="mailto:kyotou27@gmail.com">kyotou27@gmail.com</a></li>
+          <li>Location: Caltech, Pasadena, CA</li>
+          <li>GitHub: <!-- TODO: add your GitHub username --> <a href="https://github.com/yourname">@yourname</a></li>
+          <li>Google Scholar: <!-- TODO: paste your Scholar URL --> <a href="#">Profile</a></li>
         </ul>
-        <h3>Press</h3>
-        <ul>
-          <li>(Add press links here.)</li>
-        </ul>
-      </section>
-    </section>
-
-    <section class="page" data-page="teaching">
-      <section class="card">
-        <h2>Teaching</h2>
-        <ul>
-          <li>TA: Quantum Mechanics (Year)</li>
-          <li>TA: AMO Laboratory (Year)</li>
-          <li>Workshops: AMO & quantum sensing</li>
-        </ul>
-      </section>
-    </section>
-
-    <section class="page" data-page="service">
-      <section class="card">
-        <h2>Service</h2>
-        <ul>
-          <li>(Add reviewing/mentoring/service items here.)</li>
-        </ul>
-      </section>
-    </section>
-
-    <section class="page" data-page="cv">
-      <div class="grid">
-        <div class="card">
-          <h2>CV</h2>
-          <p><a href="cv.pdf">Download my CV (PDF)</a></p>
-        </div>
       </div>
-    </section>
-
-    <section class="page" data-page="contact">
-      <div class="grid">
-        <div class="card" id="contact">
-          <h2>Contact</h2>
-          <ul>
-            <li>Email (Caltech): <a href="mailto:yuiki@caltech.edu">yuiki@caltech.edu</a></li>
-            <li>Email (Gmail): <a href="mailto:kyotou27@gmail.com">kyotou27@gmail.com</a></li>
-            <li>Location: Caltech, Pasadena, CA</li>
-            <li>GitHub: <a href="https://github.com/yourname">@yourname</a></li>
-            <li>Google Scholar: <a href="#">Profile</a></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" data-page="research">
-
+    </div>
 
     <footer>
       © <span id="y"></span> Yuiki Takahashi. Built with GitHub Pages.
@@ -298,25 +235,6 @@
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
     document.documentElement.style.scrollBehavior = 'smooth';
-
-    // simple hash router
-    (function(){
-      const routes=['about','publications','awards','press','teaching','service','cv','contact','research'];
-      const pages=[...document.querySelectorAll('.page')];
-      const navLinks=[...document.querySelectorAll('nav a')];
-      function setActiveLink(hash){
-        navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href')===hash));
-      }
-      function show(route){
-        pages.forEach(p=>p.classList.toggle('active', p.dataset.page===route));
-        setActiveLink('#/'+route);
-        window.scrollTo({top:0,behavior:'instant'});
-      }
-      function parse(){
-        const h=location.hash.replace('#/','');
-        const route=routes.includes(h)?h:'about';
-        show(route);
-      }
-      window.addEventListener('hashchange',parse);
-      parse();
-    })();
+  </script>
+</body>
+</html>
