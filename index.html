@@ -464,15 +464,18 @@
       setTimeout(type,350);
     });
 
-    // Particles (richer but still lightweight)
+    // Particles (left & right bands only; avoid center)
     (function(){
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if(reduce) return;
 
       const c = document.getElementById('particles-container');
-      const MAX = 2;               // was 4
-      const SPAWN_MS = 10000;         // was 3500
-      const LIFETIME_MS = 10000;    // same as before
+      const MAX = 2;
+      const SPAWN_MS = 5000;
+      const LIFETIME_MS = 10000;
+
+      // Each side band width in % of viewport (0–100). Center is excluded.
+      const SIDE_BAND = 16; // left: 0–16%, right: 84–100%
 
       function createParticle(){
         if(!c) return;
@@ -481,18 +484,28 @@
         const p = document.createElement('div');
         p.className = 'particle';
 
-        const size = (Math.random()*50 + 50).toFixed(1); // 2–8px
-        const drift = (Math.random()*240 - 120).toFixed(0) + 'px'; // -120px to +120px
-        const dur = (Math.random()*10 + 15).toFixed(1) + 's'; // 15–25s
-        const left = (Math.random()*100).toFixed(2) + '%';
-        const opacity = (Math.random()*0.18 + 0.06).toFixed(2); // 0.06–0.24
+        // Visuals
+        const size = (Math.random()*50 + 50).toFixed(1);     // 50–100px (soft, airy)
+        const dur  = (Math.random()*10 + 15).toFixed(1) + 's'; // 15–25s
+        const opacity = (Math.random()*0.18 + 0.06).toFixed(2);
 
-        const hue  = Math.floor(Math.random()*360);       // 0–359
-        const sat  = Math.floor(Math.random()*30 + 60);   // 60–90%
-        const light= Math.floor(Math.random()*30 + 45);   // 45–75%
+        // Place only in left or right band
+        const isLeft = Math.random() < 0.5;
+        const leftPct = isLeft
+          ? (Math.random()*SIDE_BAND)                              // 0% – 16%
+          : (100 - SIDE_BAND + Math.random()*SIDE_BAND);           // 84% – 100%
+
+        // Drift gently outward so particles don't cross the center
+        const driftMag = Math.random()*60 + 20; // 20–80px
+        const drift = (isLeft ? +driftMag : -driftMag).toFixed(0) + 'px';
+
+        // Color (HSL for nice variation)
+        const hue   = Math.floor(Math.random()*360);
+        const sat   = Math.floor(Math.random()*30 + 60);
+        const light = Math.floor(Math.random()*30 + 45);
 
         p.style.cssText = `
-          width:${size}px;height:${size}px;left:${left};
+          width:${size}px;height:${size}px;left:${leftPct}%;
           --driftX:${drift};animation-duration:${dur};
           background-color:hsl(${hue} ${sat}% ${light}%);
           opacity:${opacity};
@@ -506,6 +519,7 @@
       for(let i=0;i<15;i++) setTimeout(createParticle, i*120);
       setInterval(createParticle, SPAWN_MS);
     })();
+
 
     (function highlightMyName(){
       // Only wrap if not already wrapped
