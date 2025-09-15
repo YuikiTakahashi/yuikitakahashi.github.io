@@ -28,18 +28,15 @@
       transition:background-color .3s ease,color .3s ease;
     }
 
-    /* Layout */
     .main-container{max-width:var(--max-width);margin:0 auto;position:relative}
     .content-wrapper{display:flex;gap:28px;padding:0 16px 40px;margin:0 auto;max-width:var(--max-width)}
 
-    /* Header (compact) */
     header{padding:28px 16px 12px;text-align:center}
     .header-text h1{font-size:32px;font-weight:700;margin-bottom:6px;color:var(--text-primary);display:inline-block}
     .typing-text{background:linear-gradient(90deg,var(--accent),var(--accent-hover));
       -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
     .affiliation{color:var(--text-muted);font-size:15px;margin-bottom:10px}
 
-    /* Nav (compact) */
     nav{border-top:1px solid var(--border);border-bottom:1px solid var(--border);
       padding:8px 0;margin:0 16px 16px;position:sticky;top:0;background:var(--bg);z-index:100;backdrop-filter:blur(10px);text-align:center}
     nav ul{list-style:none;display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
@@ -47,7 +44,6 @@
     nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent);transition:width .25s}
     nav a:hover{color:var(--accent)} nav a:hover::after{width:100%}
 
-    /* Sidebar */
     .sidebar{width:var(--sidebar-width);flex-shrink:0;position:sticky;top:84px;height:fit-content}
     .sidebar-content{background:var(--bg-secondary);border:1px solid var(--border);border-radius:12px;
       padding:18px 16px;text-align:center;box-shadow:var(--shadow-sm)}
@@ -58,7 +54,6 @@
     .profile-photo img{width:100%;height:100%;object-fit:cover}
     .sidebar h5{font-size:13.5px;color:var(--text-secondary);font-weight:600;margin-bottom:10px}
 
-    /* Contact block (icons) */
     .sidebar-contact{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);text-align:left}
     .sidebar-contact p{display:flex;align-items:center;gap:10px;margin:8px 0;color:var(--text-primary);font-size:14px}
     .sidebar-contact strong{display:none}
@@ -76,7 +71,6 @@
     .sidebar-contact p:nth-of-type(4)::before{ -webkit-mask-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M12 3 2 8l10 5 8-4v6h2V8L12 3Zm-7 9v4l7 3 7-3v-4l-7 3-7-3Z'/></svg>");
       mask-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M12 3 2 8l10 5 8-4v6h2V8L12 3Zm-7 9v4l7 3 7-3v-4l-7 3-7-3Z'/></svg>"); }
 
-    /* Main */
     .main-content{flex:1;min-width:0}
     section{margin-bottom:var(--section-gap);scroll-margin-top:72px}
     h2{
@@ -86,7 +80,7 @@
     h2::after{content:'';position:absolute;bottom:-1px;left:0;width:68px;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
     p{color:var(--text-secondary);margin-bottom:10px;line-height:var(--tight-line)}
 
-    /* --- Unified “fun-but-pro” list style for News / Education / Awards --- */
+    /* Neutral list style (no blue highlights) */
     .nice-list{list-style:none;padding:0;margin:0}
     .nice-list li{
       position:relative;padding:8px 8px 8px 24px;border-bottom:1px solid var(--border);
@@ -94,36 +88,31 @@
     }
     .nice-list li:last-child{border-bottom:none}
     .nice-list li::before{
-      content:'';position:absolute;left:8px;top:14px;width:6px;height:6px;background:var(--accent);
-      border-radius:50%;box-shadow:0 0 0 3px var(--accent-light);
+      content:'';position:absolute;left:8px;top:14px;width:6px;height:6px;background:var(--text-muted);
+      border-radius:50%;
     }
-    .nice-list li:hover{background:var(--accent-light);padding-left:26px}
+    .nice-list li:hover{background:var(--bg-secondary);padding-left:26px}
 
-    /* Publications (highlight name + journal emphasis) */
+    /* Publications */
     .publication{padding:12px 0;border-bottom:1px solid var(--border);transition:background-color .25s ease,padding-left .25s ease}
     .publication:hover{background:var(--accent-light);padding-left:6px}
     .publication:last-child{border-bottom:none}
     .pub-title{font-weight:700;font-size:15.5px;margin-bottom:4px;color:var(--text-primary)}
     .pub-authors,.pub-venue,.pub-description{font-size:13.5px}
     .pub-authors .me{font-weight:800;color:var(--accent)}
-    .pub-venue{
-      font-weight:700;color:var(--text-primary);font-style:italic;margin:4px 0 6px;display:inline-block;
-      background:var(--accent-light);padding:2px 8px;border-radius:8px;
-    }
+    /* Venue: emphasized typographically only (no colored pill) */
+    .pub-venue{font-weight:700;color:var(--text-primary);font-style:italic;margin:4px 0 6px;display:inline-block}
     .pub-links{display:flex;gap:10px;font-size:13.5px}
     .pub-mentions{font-size:13px;color:var(--text-secondary);margin-top:6px}
     .pub-mentions strong{color:var(--text-primary)}
     .pub-mentions a{font-weight:600}
 
-    /* Cards (kept for container only; list inside is unified) */
     .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:10px}
     .card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;padding:14px;transition:transform .25s,box-shadow .25s}
     .card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
 
-    /* Footer */
     footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--border);text-align:center;color:var(--text-muted);font-size:13.5px}
 
-    /* Responsive */
     @media (max-width:968px){
       .content-wrapper{flex-direction:column}
       .sidebar{width:100%;position:static;margin-bottom:20px}
@@ -136,7 +125,6 @@
       .profile-photo{width:140px;height:140px}
     }
 
-    /* Particles & emoji original styles preserved (not repeated here for brevity) */
     .particles-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;overflow:hidden}
     .particle{position:absolute;background:var(--accent);border-radius:50%;opacity:.1;animation:float-up 20s infinite linear}
     @keyframes float-up{0%{transform:translateY(100vh) translateX(0);opacity:0;}10%{opacity:.1;}90%{opacity:.1;}100%{transform:translateY(-100vh) translateX(100px);opacity:0;}}
@@ -150,31 +138,27 @@
   </style>
 </head>
 <body>
-  <!-- Background particles -->
   <div class="particles-bg" id="particles-container"></div>
 
-  <!-- Theme Toggle -->
   <div class="theme-toggle" onclick="toggleTheme()">
     <span class="icon" id="theme-icon">☀️</span><span id="theme-text">Light</span>
   </div>
 
   <div class="content-wrapper">
-    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-content">
         <div class="profile-photo">YT</div>
         <h5>AMO Physics • Quantum Sensing • Precision measurements</h5>
 
         <div class="sidebar-contact">
-          <p><strong>Email:</strong> yuiki at caltech.edu</p>
           <p><strong>Location:</strong> Pasadena, CA 91125</p>
           <p><strong>ORCID:</strong> <a href="https://github.com/yourname">@yourname</a></p>
           <p><strong>Google Scholar:</strong> <a href="https://github.com/yourname">@yourname</a></p>
+          <p><strong>Email:</strong> yuiki at caltech.edu</p>
         </div>
       </div>
     </aside>
 
-    <!-- Main -->
     <main class="main-container">
       <header>
         <div class="header-text">
@@ -202,7 +186,6 @@
           </p>
         </section>
 
-        <!-- Unified list style -->
         <section id="news">
           <h2>Recent News</h2>
           <ul class="nice-list">
@@ -235,7 +218,6 @@
               <a href="#">Journal</a>
               <a href="#">PDF</a>
             </div>
-            <!-- Mentions slot (add links inside) -->
             <div class="pub-mentions"><strong>Featured in:</strong>
               <a href="LINK1">Nature News</a>, <a href="LINK2">Physics Magazine</a>
             </div>
@@ -275,14 +257,12 @@
           </div>
         </section>
 
-        <!-- NEW: Education (same style as Awards/News) -->
         <section id="education">
           <h2>Education</h2>
           <ul class="nice-list">
-            <!-- Add items like:
-            <li><strong>PhD, Physics</strong> — Caltech (2019–present)</li>
-            <li><strong>BSc, Physics</strong> — University of Tokyo (2015–2019)</li>
-            -->
+            <li><strong>Ph.D. in Physics</strong> — California Institute of Technology (Oct 2019 – Present)</li>
+            <li><strong>Graduate Coursework in Physics</strong> — The University of Tokyo (Apr 2019 – Sep 2019)</li>
+            <li><strong>B.S. in Physics</strong> — Kyoto University (Apr 2015 – Mar 2019)</li>
           </ul>
         </section>
 
@@ -305,7 +285,6 @@
     </main>
   </div>
 
-  <!-- Emoji buttons -->
   <div class="emoji-react">
     <button class="emoji-btn" onclick="emojiReact(this, '⚛️')">⚛️</button>
     <button class="emoji-btn" onclick="emojiReact(this, '🔬')">🔬</button>
@@ -341,7 +320,6 @@
     }
     document.getElementById('year').textContent=new Date().getFullYear();
 
-    // Typing effect
     document.addEventListener('DOMContentLoaded',function(){
       const el=document.querySelector('.typing-text'); if(!el) return;
       const text=el.textContent; el.textContent=''; let i=0;
@@ -349,7 +327,6 @@
       setTimeout(type,350);
     });
 
-    // Particles
     function createParticle(){
       const c=document.getElementById('particles-container');
       if(c && c.children.length<4){
@@ -360,13 +337,27 @@
     }
     setInterval(createParticle,3500); for(let i=0;i<2;i++){ setTimeout(createParticle,i*1000); }
 
-    // Highlight ONLY your name in authors (style-only, no content change)
+    // Highlight your name in authors
     (function highlightMyName(){
-      const patterns=[/Y\.?\s*Takahashi/g, /Yuiki\s+Takahashi/g];
-      document.querySelectorAll('.pub-authors').forEach(el=>{
-        let html=el.innerHTML;
-        patterns.forEach(re=>{ html=html.replace(re,'<span class="me">$&</span>'); });
-        el.innerHTML=html;
+      document.querySelectorAll('.publication').forEach(pub=>{
+        const titleEl=pub.querySelector('.pub-title');
+        const authorsEl=pub.querySelector('.pub-authors');
+        if(!authorsEl) return;
+
+        let html=authorsEl.innerHTML;
+
+        // Special case: MQM paper – highlight only the FIRST "Y. Takahashi"
+        if(titleEl && titleEl.textContent.includes('Measuring the nuclear magnetic quadrupole moment')){
+          html=html.replace(/Y\.\s*Takahashi/,'<span class="me">$&</span>');
+          authorsEl.innerHTML=html;
+          return;
+        }
+
+        // General case: highlight all occurrences of your name
+        html=html
+          .replace(/Yuiki\s+Takahashi/g,'<span class="me">$&</span>')
+          .replace(/Y\.?\s*Takahashi/g,'<span class="me">$&</span>');
+        authorsEl.innerHTML=html;
       });
     })();
   </script>
