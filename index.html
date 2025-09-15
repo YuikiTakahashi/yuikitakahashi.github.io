@@ -429,8 +429,8 @@
       if(reduce) return;
 
       const c = document.getElementById('particles-container');
-      const MAX = 1000;               // was 4
-      const SPAWN_MS = 60;         // was 3500
+      const MAX = 10;               // was 4
+      const SPAWN_MS = 600;         // was 3500
       const LIFETIME_MS = 60000;    // same as before
 
       function createParticle(){
@@ -440,7 +440,7 @@
         const p = document.createElement('div');
         p.className = 'particle';
 
-        const size = (Math.random()*6 + 2).toFixed(1); // 2–8px
+        const size = (Math.random()*30 + 10).toFixed(1); // 2–8px
         const drift = (Math.random()*240 - 120).toFixed(0) + 'px'; // -120px to +120px
         const dur = (Math.random()*10 + 15).toFixed(1) + 's'; // 15–25s
         const left = (Math.random()*100).toFixed(2) + '%';
