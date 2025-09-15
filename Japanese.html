@@ -6,33 +6,67 @@
   <title>日本語ブログ | Yuiki Takahashi</title>
   <meta name="description" content="日本語ブログ（お笑い・雑記）" />
   <link rel="icon" href="data:," />
-  <!-- Reuse the same styles by copying your <style> block here, or factor into a shared CSS file if you prefer -->
   <style>
-    /* Minimal reuse of your existing variables/look */
+    /* ===== Base look (aligned with your main site) ===== */
     :root{
       --bg:#ffffff;--bg-secondary:#fafafa;--text-primary:#1a1a1a;--text-secondary:#666;
-      --text-muted:#999;--accent:#0066cc;--border:#e5e5e5;--shadow-sm:0 1px 3px rgba(0,0,0,.06);
+      --text-muted:#999;--accent:#0066cc;--accent-hover:#0052a3;--accent-light:rgba(0,102,204,.08);
+      --border:#e5e5e5;--shadow-sm:0 1px 3px rgba(0,0,0,.06);
       --max-width:900px; --tight-line:1.6;
     }
-    [data-theme="dark"]{ --bg:#0b0e14;--bg-secondary:#121826;--text-primary:#e6e8ef;--text-secondary:#a6adbb;--text-muted:#808890;--accent:#7dd3fc;--border:#1f2937; }
-    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-         background:var(--bg);color:var(--text-primary);line-height:var(--tight-line);margin:0;}
+    [data-theme="dark"]{
+      --bg:#0b0e14;--bg-secondary:#121826;--text-primary:#e6e8ef;--text-secondary:#a6adbb;
+      --text-muted:#808890;--accent:#7dd3fc;--accent-hover:#a78bfa;--accent-light:rgba(125,211,252,.08);
+      --border:#1f2937;--shadow-sm:0 1px 3px rgba(0,0,0,.28);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+      background:var(--bg);color:var(--text-primary);line-height:var(--tight-line);
+    }
+
     .wrap{max-width:var(--max-width);margin:0 auto;padding:20px 16px 40px}
     header{padding:18px 0 10px;text-align:center}
     h1{font-size:28px;margin:0}
+    p{color:var(--text-secondary)}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{color:var(--accent-hover);text-decoration:underline}
+
+    /* Nav */
     nav{display:flex;gap:12px;justify-content:center;margin:8px 0 18px}
     nav a{font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid transparent}
     nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+
+    /* Posts */
     .post{background:var(--bg-secondary);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin:12px 0;box-shadow:var(--shadow-sm)}
-    .post h3{margin:0 0 6px;font-size:18px}
+    .post h3{margin:0 0 6px;font-size:18px;color:var(--text-primary)}
     .post time{font-size:12.5px;color:var(--text-muted)}
-    .post p{color:var(--text-secondary);margin:10px 0}
+    .post p{margin:10px 0}
+
+    /* --- Enhancements you asked for --- */
+    /* 1) Emphasize article lede */
+    .post .lede { color: var(--text-primary); font-weight: 500; }
+
+    /* 2) Image card styling */
+    .post figure { margin: 10px 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background:var(--bg); }
+    .post figure img { display: block; width: 100%; height: auto; }
+    .post figure figcaption { font-size: 12.5px; color: var(--text-muted); padding: 6px 8px; background: var(--bg-secondary); }
+
+    /* 3) Responsive YouTube embeds */
+    .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-secondary); }
+    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+    /* Small UI */
+    .theme-toggle{position:fixed;top:14px;right:14px;background:var(--bg-secondary);border:1px solid var(--border);
+      border-radius:999px;padding:6px 10px;cursor:pointer;font-size:13px;color:var(--text-secondary)}
     footer{margin-top:24px;text-align:center;font-size:13px;color:var(--text-muted)}
-    .theme-toggle{position:fixed;top:14px;right:14px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:999px;padding:6px 10px;cursor:pointer;font-size:13px;color:var(--text-secondary)}
   </style>
 </head>
 <body>
+  <!-- Theme toggle -->
   <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
   <div class="wrap">
     <header>
       <h1>日本語ブログ</h1>
@@ -43,26 +77,92 @@
     </header>
 
     <main id="posts">
-      <!-- Write posts here (you can duplicate .post blocks) -->
-      <article class="post">
-        <h3>はじめに：お笑いと科学</h3>
+      <!-- ====== 新しい記事は、この <main> の先頭にコピペ追加してください ====== -->
+
+      <!-- サンプル記事（タイトル・日付・本文・画像・動画を差し替えるだけ） -->
+      <article class="post" id="post-20250914-m1-sample">
+        <h3>【ネタ名／番組名】ひとことで要約のキャッチ</h3>
         <time datetime="2025-09-14">2025-09-14</time>
-        <p>このページでは、お笑いの話題や雑記を日本語でゆるく書いていきます。</p>
+
+        <p class="lede">
+          導入（3〜4行以内）。どんなネタか、なぜ取り上げたか、全体の印象を簡潔に。
+        </p>
+
+        <!-- サムネ（任意） -->
+        <figure>
+          <img src="img/sample-thumb.jpg" alt="サムネイルの説明（任意）">
+          <figcaption>画像の出典や補足（任意）</figcaption>
+        </figure>
+
+        <h4>ネタの概要</h4>
+        <ul>
+          <li>設定：……</li>
+          <li>登場人物：……</li>
+          <li>オチ（ネタバレ注意なら <code>&lt;details&gt;</code> を使う）：……</li>
+        </ul>
+
+        <!-- ネタバレを畳む例（必要なければ削除） -->
+        <details>
+          <summary>オチを表示（ネタバレ）</summary>
+          <p>ここに詳しいオチや伏線回収の説明。</p>
+        </details>
+
+        <h4>好きだったポイント（Best Bits）</h4>
+        <ol>
+          <li>ツッコミの言い換えが◯◯（具体例）</li>
+          <li>伏線回収が◯◯で気持ちいい</li>
+          <li>間（ポーズ）の取り方が科学的に見ると◯◯</li>
+        </ol>
+
+        <blockquote>
+          印象に残ったフレーズややり取り（10〜40文字程度）
+        </blockquote>
+
+        <h4>分析（構造・リズム・伏線）</h4>
+        <p>
+          導入→展開→ずらし→回収、比喩の反復、言い換えチェーン、緊張と緩和の周期などを簡潔に。
+        </p>
+
+        <h4>メモ</h4>
+        <p>
+          自分用メモ／次回見返すポイント／関連するネタ。
+        </p>
+
+        <h4>動画 / 参考リンク</h4>
+        <p><a href="https://example.com" target="_blank" rel="noopener">公式リンク</a></p>
+
+        <!-- YouTube 埋め込み（差し替え） -->
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/VIDEO_ID"
+            title="YouTube video"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
       </article>
+
+      <!-- ====== ここまでサンプル。以降、同じ <article class="post"> を複製して使う ====== -->
     </main>
 
     <footer>© <span id="year"></span> Yuiki Takahashi</footer>
   </div>
 
   <script>
+    // Theme toggle (shared behavior with main site)
     function toggleTheme(){
       const t=document.documentElement.getAttribute('data-theme');
       const n=t==='dark'?'light':'dark';
       document.documentElement.setAttribute('data-theme',n);
       localStorage.setItem('theme',n);
     }
-    const savedTheme=localStorage.getItem('theme')||'light';
-    document.documentElement.setAttribute('data-theme',savedTheme);
+    (function initTheme(){
+      const savedTheme=localStorage.getItem('theme')||'light';
+      document.documentElement.setAttribute('data-theme',savedTheme);
+    })();
+
+    // Year in footer
     document.getElementById('year').textContent=new Date().getFullYear();
   </script>
 </body>
