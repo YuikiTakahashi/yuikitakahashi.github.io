@@ -81,12 +81,46 @@
     }
 
     header{text-align:center; margin: 18px 0 6px;}
-    header h1{
+    /* ▼ ヒーロータイトル：上品な入場アニメ＋ホバーシマー＋下線スライド */
+    #blogTitle{
+      display:inline-block;
       font-size:28px; font-weight:900; letter-spacing:.4px;
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
       -webkit-background-clip:text; background-clip:text; color:transparent;
+      position:relative;
+      will-change: transform, opacity, filter;
+      /* 初回入場（reduced-motion尊重） */
+      animation: hero-in 700ms cubic-bezier(.2,.9,.2,1) 120ms both;
+      background-size: 120% 100%;
+      transition: background-position 1000ms ease;
+      background-position: 0% 50%;
+      cursor: pointer; /* クリック可能 */
     }
-    header p{ color:var(--muted); margin-top:6px; }
+    /* 下線がスッと伸びる */
+    #blogTitle::after{
+      content:"";
+      position:absolute; left:0; bottom:-6px; height:3px; width:0%;
+      border-radius:2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      animation: underline-in 600ms ease 400ms both;
+    }
+    /* ホバーで穏やかなシマー */
+    #blogTitle:hover{ background-position: 100% 50%; }
+
+    @keyframes hero-in{
+      from{ opacity:0; transform:translateY(-14px) scale(.98); filter:blur(3px); }
+      to  { opacity:1; transform:translateY(0)     scale(1);    filter:blur(0); }
+    }
+    @keyframes underline-in{
+      to{ width:100%; }
+    }
+    /* モーション軽減設定なら即時表示 */
+    @media (prefers-reduced-motion: reduce){
+      #blogTitle{ animation:none; }
+      #blogTitle::after{ animation:none; width:100%; }
+    }
+
+    header p{ color:var(--muted); margin-top:8px; }
 
     /* ====== Posts (calm, no motion) ====== */
     main{ margin-top: 18px; }
@@ -101,7 +135,7 @@
       /* NO transitions/animations */
     }
 
-    /* Summary row: ALWAYS visible (Title + Date + one-line excerpt) */
+    /* Summary (Title + Date + one-line excerpt) */
     details.post > summary{
       list-style: none;
       cursor: pointer;
@@ -166,7 +200,7 @@
     }
 
     /* Focus styles (keyboard friendly) */
-    summary:focus-visible, .home-btn:focus-visible, .theme-toggle:focus-visible, .search:focus-visible{
+    summary:focus-visible, .home-btn:focus-visible, .theme-toggle:focus-visible, .search:focus-visible, #blogTitle:focus-visible{
       outline: 2px solid rgba(14,165,233,.45);
       outline-offset: 2px;
       border-radius: 10px;
@@ -177,11 +211,27 @@
       .headline h3{ max-width: 100%; }
       .search{ width: 130px; }
     }
+
+    /* クリックの星スパーク */
+    .spark{
+      position: fixed;
+      left: 0; top: 0;
+      transform: translate(-50%,-50%);
+      pointer-events: none;
+      font-size: 16px;
+      line-height: 1;
+      animation: spark-move 600ms ease-out forwards;
+      z-index: 9999;
+    }
+    @keyframes spark-move{
+      from{ opacity:1; transform: translate(-50%,-50%) scale(.9); }
+      to  { opacity:0; transform: translate(-50%,-80%) scale(1.2); }
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <!-- Top bar with must-have Home button + theme toggle + live search -->
+    <!-- Top bar with Home + search + theme toggle -->
     <div class="topbar">
       <div class="left">
         <a class="home-btn" href="index.html" aria-label="ホームに戻る">← Home</a>
@@ -194,7 +244,7 @@
     </div>
 
     <header>
-      <h1>日本語ブログ</h1>
+      <h1 id="blogTitle" tabindex="0" aria-label="日本語ブログ。クリックまたはEnterでちょっとしたエフェクト">日本語ブログ</h1>
       <p>タイトルと日付だけ先に見せる、静かなアコーディオン。美しく、クールに。</p>
     </header>
 
@@ -300,9 +350,7 @@
     const searchEl = document.getElementById('search');
     const posts = Array.from(document.querySelectorAll('details.post'));
     function normalize(s){ return (s || '').toLowerCase().replace(/\s+/g,' ').trim(); }
-    function textOf(node){
-      return node ? node.textContent || '' : '';
-    }
+    function textOf(node){ return node ? (node.textContent || '') : ''; }
     function filter(){
       const q = normalize(searchEl.value);
       posts.forEach(d=>{
@@ -325,6 +373,24 @@
         target.open = true;
         target.scrollIntoView({behavior:'instant', block:'start'});
       }
+    })();
+
+    // ===== Title: click to spawn a subtle star at the pointer =====
+    (function titleSpark(){
+      const t = document.getElementById('blogTitle');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function spawn(e){
+        if(reduce) return; // respect user preference
+        const s = document.createElement('div');
+        s.className = 'spark';
+        s.textContent = '✦';
+        s.style.left = (e.clientX) + 'px';
+        s.style.top  = (e.clientY) + 'px';
+        document.body.appendChild(s);
+        setTimeout(()=>s.remove(), 620);
+      }
+      t.addEventListener('click', spawn);
+      t.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); spawn(e); } });
     })();
 
     // Footer year
