@@ -100,9 +100,22 @@
     .nice-list li:hover{background:var(--bg-secondary);padding-left:26px}
 
     /* Education two-column layout */
-    .edu-list li{display:grid;grid-template-columns:minmax(160px,260px) 1fr;gap:12px;align-items:start}
-    .edu-school{font-weight:700}
-    .edu-detail{color:var(--text-primary)}
+    /* two-column layout already exists */
+    .edu-list li {
+      display: grid;
+      grid-template-columns: minmax(160px, 260px) 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    /* stack school name + years on the left */
+    .edu-school { display: flex; flex-direction: column; gap: 2px; }
+    .school-name { font-weight: 700; }
+
+    /* make years appear as a secondary line (choose color you prefer) */
+    .edu-years { font-size: 13px; color: var(--text-primary); } /* solid black per your earlier request */
+    /* If you prefer slightly softer:  color: var(--text-secondary); */
+
 
     /* Publications */
     .publication{padding:12px 0;border-bottom:1px solid var(--border);transition:background-color .25s ease,padding-left .25s ease}
@@ -171,8 +184,8 @@
         <div class="sidebar-contact">
           <p><strong>Email:</strong> yuiki at caltech.edu</p>
           <p><strong>Location:</strong> Pasadena, CA 91125</p>
-          <p><strong>ORCID:</strong> <a href="https://github.com/yourname">@yourname</a></p>
-          <p><strong>Google Scholar:</strong> <a href="https://github.com/yourname">@yourname</a></p>
+          <p><strong>ORCID:</strong> <a href="https://orcid.org/0000-0003-0027-0556">ORCID</a></p>
+          <p><strong>Google Scholar:</strong> <a href="https://scholar.google.co.jp/citations?user=jrUi5RUAAAAJ&hl=ja">Google Scholor</a></p>
         </div>
       </div>
     </aside>
@@ -201,7 +214,7 @@
         <section id="about">
           <h2>About</h2>
           <p>
-            I am a PhD candidate in Physics at Caltech working with Professor Nick Hutzler. My research focuses on developing quantum sensors for fundamental physics, particularly in the context of precision measurements and symmetry violation searches.
+            I am a PhD candidate in Physics at Caltech working with Professor <a href="https://www.hutzlerlab.com/hutzler-lab-caltech">Nick Hutzler</a> My research focuses on developing quantum sensors for fundamental physics, particularly in the context of precision measurements and symmetry violation searches.
           </p>
         </section>
 
@@ -226,9 +239,21 @@
             <div class="pub-description">Demonstrates molecular clock transitions with simultaneous electric- and magnetic-field insensitivity while retaining strong eEDM response, enabling noise-robust precision tests of symmetry violation.</div>
             <div class="pub-links">
               <a href="https://arxiv.org/abs/2508.06787">arXiv</a>
+            </div>
+          </div>
+
+
+          <div class="publication">
+            <div class="pub-title">Measuring the nuclear magnetic quadrupole moment of optically trapped ytterbium atoms in the metastable state</div>
+            <div class="pub-authors">Ayaki Sunaga, Yuiki Takahashi, Amar Vutha, Yoshiro Takahashi</div>
+            <div class="pub-venue">New Journal of Physics 26, 023023 (2024)</div>
+            <div class="pub-description">Demonstrates an atomic platform using optically trapped metastable ytterbium for probing symmetry-violating nuclear moments via precision spectroscopy.</div>
+            <div class="pub-links">
+              <a href="#">Journal</a>
               <a href="#">arXiv</a>
             </div>
           </div>
+
 
           <div class="publication">
             <div class="pub-title">Engineering field-insensitive molecular clock transitions for symmetry violation searches</div>
@@ -248,7 +273,7 @@
 
           <div class="publication">
             <div class="pub-title">Characterizing the Fundamental Bending Vibration of a Linear Polyatomic Molecule for Symmetry Violation Searches</div>
-            <div class="pub-authors">Arian Jadbabaie*, Yuiki Takahashi*, Nickolas H. Pilgram, Chandler J. Conn, Yi Zeng, Chi Zhang, Nicholas R. Hutzler</div>
+            <div class="pub-authors">Arian Jadbabaie*, Yuiki Takahashi*, Nickolas H. Pilgram, Chandler J. Conn, Yi Zeng, Chi Zhang, Nicholas R. Hutzler (*equal contribution)</div>
             <div class="pub-venue">New Journal of Physics 25, 073014 (2023)</div>
             <div class="pub-description">Performs precision spectroscopy of the v₂ bending mode and ℓ-doubling, establishing key structure for state control and enhanced sensitivity in polyatomic eEDM searches.</div>
             <div class="pub-links">
@@ -258,15 +283,17 @@
           </div>
 
           <div class="publication">
-            <div class="pub-title">Measuring the nuclear magnetic quadrupole moment of optically trapped ytterbium atoms in the metastable state</div>
-            <div class="pub-authors">Ayaki Sunaga, Yuiki Takahashi, Amar Vutha, Yoshiro Takahashi</div>
-            <div class="pub-venue">New Journal of Physics 26, 023023 (2024)</div>
-            <div class="pub-description">Demonstrates an atomic platform using optically trapped metastable ytterbium for probing symmetry-violating nuclear moments via precision spectroscopy.</div>
+            <div class="pub-title">Low-J transitions in A˜2Π(0, 0, 0) −X2Σ+(0, 0, 0) band of buffer-gas-cooled CaOH</div>
+            <div class="pub-authors">Yuiki Takahashi, Masaaki Baba, Katsunari Enomoto, Ayami Hiramoto, Kana Iwakuni, Susumu Kuma, Reo Tobaru, Yuki Miyamoto</div>
+            <div class="pub-venue">The Astrophysical Journal 936, 97 (2022)</div>
+            <div class="pub-description">Models and validates buffer-gas source dynamics and resulting beam properties relevant to cold-molecule experiments and sources.</div>
             <div class="pub-links">
               <a href="#">Journal</a>
               <a href="#">arXiv</a>
             </div>
           </div>
+        </section>
+
 
           <div class="publication">
             <div class="pub-title">Simulation of cryogenic buffer gas beams</div>
@@ -285,8 +312,11 @@
           <h2>Education</h2>
           <ul class="nice-list edu-list">
             <li>
-              <span class="edu-school">California Institute of Technology</span>
-              <span class="edu-detail"><strong>Ph.D. in Physics</strong> — Division of Physics, Mathematics, and Astronomy (Oct 2019 – Present)</span>
+              <span class="edu-school">
+                <span class="school-name">California Institute of Technology</span>
+                <span class="edu-years">Oct 2019 – Present</span>
+              </span>
+              <span class="edu-detail"><strong>Ph.D. in Physics</strong> — Division of PMA</span>
             </li>
             <li>
               <span class="edu-school">The University of Tokyo</span>
@@ -303,12 +333,12 @@
         <section id="awards">
           <h2>Honors & Awards</h2>
           <ul class="nice-list">
-            <li><strong>Tombrello Scholarship</strong> (Jun 2025–present)</li>
-            <li><strong>IQIM Eddleman Fellowship</strong> (Sep 2023–Sep 2024)</li>
-            <li><strong>John S. Stemple Memorial Prize</strong> (May 2023)</li>
+            <li><strong>Tombrello Scholarship, Caltech</strong> (Jun 2025–present)</li>
+            <li><strong>IQIM Eddleman Fellowship, Caltech</strong> (Sep 2023–Sep 2024)</li>
+            <li><strong>John S. Stemple Memorial Prize, Caltech</strong> (May 2023)</li>
             <li><strong>Masason Foundation Research Grant</strong> (Jul 2021–Jun 2023)</li>
             <li><strong>Masason Foundation Fellowship</strong> (2018–2023)</li>
-            <li><strong>JPS Student Presentation Award</strong> (Mar 2021)</li>
+            <li><strong><a href="https://www.jps.or.jp/activities/awards/gakusei/student-all.php">JPS Student Presentation Award, Japanese Physical Society</a></strong> (Mar 2021)</li>
           </ul>
         </section>
 
