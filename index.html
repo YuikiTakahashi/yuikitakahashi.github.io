@@ -75,17 +75,6 @@
       mask-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm-2.8 6.5h1.6V17H9.2V8.5Zm6.9 3.9a2.4 2.4 0 0 0-2.4-2.4h-1.8V8.5H15a3.9 3.9 0 1 1 0 7.8h-2.1v-1.5H15a2.4 2.4 0 0 0 2.1-2.4Z'/></svg>"); }
     .sidebar-contact p:nth-of-type(4)::before{ -webkit-mask-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M12 3 2 8l10 5 8-4v6h2V8L12 3Zm-7 9v4l7 3 7-3v-4l-7 3-7-3Z'/></svg>");
       mask-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M12 3 2 8l10 5 8-4v6h2V8L12 3Zm-7 9v4l7 3 7-3v-4l-7 3-7-3Z'/></svg>"); }
-    /* LinkedIn icon for the 5th contact row */
-    .sidebar-contact p:nth-of-type(5)::before{
-      -webkit-mask-image:url("data:image/svg+xml;utf8,\
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
-        <path d='M4 3a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V3zm4.5 15V10H6v8h2.5zm-1.25-9.25a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM18 18h-2.5v-4.2c0-1.12-.88-2-2-2s-2 .88-2 2V18H9V10h2.5v1.2a3 3 0 0 1 2.5-1.3c2 0 3.5 1.5 3.5 3.6V18z'/>
-      </svg>");
-      mask-image:url("data:image/svg+xml;utf8,\
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
-        <path d='M4 3a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V3zm4.5 15V10H6v8h2.5zm-1.25-9.25a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM18 18h-2.5v-4.2c0-1.12-.88-2-2-2s-2 .88-2 2V18H9V10h2.5v1.2a3 3 0 0 1 2.5-1.3c2 0 3.5 1.5 3.5 3.6V18z'/>
-      </svg>");
-    }
 
     /* Main */
     .main-content{flex:1;min-width:0}
@@ -110,23 +99,23 @@
     }
     .nice-list li:hover{background:var(--bg-secondary);padding-left:26px}
 
-    /* Education layout: add a logo column */
+    /* Education two-column layout */
+    /* two-column layout already exists */
     .edu-list li {
       display: grid;
-      grid-template-columns: 36px minmax(160px, 260px) 1fr; /* [logo] [school+years] [detail] */
+      grid-template-columns: minmax(160px, 260px) 1fr;
       gap: 12px;
-      align-items: center;
-    }
-    .edu-logo{
-      width:28px;height:28px;object-fit:contain;filter:grayscale(100%);opacity:.9;
+      align-items: start;
     }
 
     /* stack school name + years on the left */
     .edu-school { display: flex; flex-direction: column; gap: 2px; }
     .school-name { font-weight: 700; }
 
-    /* make years appear as a secondary line (solid black per earlier request) */
-    .edu-years { font-size: 13px; color: var(--text-primary); }
+    /* make years appear as a secondary line (choose color you prefer) */
+    .edu-years { font-size: 13px; color: var(--text-primary); } /* solid black per your earlier request */
+    /* If you prefer slightly softer:  color: var(--text-secondary); */
+
 
     /* Publications */
     .publication{padding:12px 0;border-bottom:1px solid var(--border);transition:background-color .25s ease,padding-left .25s ease}
@@ -156,19 +145,17 @@
       .sidebar-content{max-width:420px;margin:0 auto}
       header{padding:20px 16px 10px}
       .header-text h1{font-size:28px}
-      .edu-list li{grid-template-columns:28px 1fr}
+      .edu-list li{grid-template-columns:1fr}
     }
     @media (max-width:768px){
       .header-text h1{font-size:26px}
       .profile-photo{width:140px;height:140px}
     }
 
-    /* Particles & emoji (kept; particles upgraded) */
+    /* Particles & emoji (kept) */
     .particles-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;overflow:hidden}
     .particle{position:absolute;background:var(--accent);border-radius:50%;opacity:.1;animation:float-up 20s infinite linear}
-    @keyframes float-up{0%{transform:translateY(100vh) translateX(0);opacity:0;}10%{opacity:.12;}90%{opacity:.12;}100%{transform:translateY(-100vh) translateX(var(--driftX, 100px));opacity:0;}}
-    @media (prefers-reduced-motion: reduce){ .particle{ animation:none !important; } }
-
+    @keyframes float-up{0%{transform:translateY(100vh) translateX(0);opacity:0;}10%{opacity:.1;}90%{opacity:.1;}100%{transform:translateY(-100vh) translateX(100px);opacity:0;}}
     .emoji-react{position:fixed;bottom:16px;left:16px;display:flex;gap:8px;z-index:100}
     .emoji-btn{width:40px;height:40px;border-radius:50%;background:var(--bg-secondary);border:1px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;transition:all .3s ease}
     .emoji-btn:hover{transform:scale(1.2) rotate(10deg);box-shadow:var(--shadow-lg);background:var(--accent-light)}
@@ -176,14 +163,6 @@
     .emoji-btn.ping{animation:ping .5s ease}
     .theme-toggle{position:fixed;top:14px;right:14px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:999px;padding:6px 10px;cursor:pointer;display:flex;align-items:center;gap:8px;z-index:1000;box-shadow:var(--shadow-md);transition:all .25s ease;font-size:13px;color:var(--text-secondary)}
     .theme-toggle:hover{transform:translateY(-1px);box-shadow:var(--shadow-lg)}
-
-    /* Cursor sparkle trail */
-    .cursor-dot{
-      position:fixed;width:8px;height:8px;border-radius:50%;background:var(--accent);opacity:.25;pointer-events:none;
-      transform:translate(-50%,-50%) scale(1);animation:dot-fade 600ms ease-out forwards;mix-blend-mode:multiply;
-    }
-    @keyframes dot-fade{to{ transform:translate(-50%,-50%) scale(0); opacity:0; }}
-    @media (prefers-reduced-motion: reduce){ .cursor-dot{ display:none !important; } }
   </style>
 </head>
 <body>
@@ -207,8 +186,6 @@
           <p><strong>Location:</strong> Pasadena, CA 91125</p>
           <p><strong>ORCID:</strong> <a href="https://orcid.org/0000-0003-0027-0556">ORCID</a></p>
           <p><strong>Google Scholar:</strong> <a href="https://scholar.google.co.jp/citations?user=jrUi5RUAAAAJ&hl=ja">Google Scholor</a></p>
-          <!-- LinkedIn inserted under Google Scholar -->
-          <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/yuiki-takahashi">LinkedIn</a></p>
         </div>
       </div>
     </aside>
@@ -337,7 +314,6 @@
           <h2>Education</h2>
           <ul class="nice-list edu-list">
             <li>
-              <img class="edu-logo" src="logos/caltech.svg" alt="Caltech logo">
               <span class="edu-school">
                 <span class="school-name">California Institute of Technology</span>
                 <span class="edu-years">Oct 2019 – Present</span>
@@ -345,7 +321,6 @@
               <span class="edu-detail"><strong>Ph.D. in Physics</strong> — Division of Physics, Mathematics, and Astronomy</span>
             </li>
             <li>
-              <img class="edu-logo" src="logos/u-tokyo.svg" alt="The University of Tokyo logo">
               <span class="edu-school">
                 <span class="school-name">The University of Tokyo</span>
                 <span class="edu-years">Apr 2019 – Sep 2019</span>
@@ -353,7 +328,6 @@
               <span class="edu-detail"><strong>Graduate Coursework in Physics</strong> — Department of Basic Science, Graduate School of Arts and Sciences</span>
             </li>
             <li>
-              <img class="edu-logo" src="logos/kyoto.svg" alt="Kyoto University logo">
               <span class="edu-school">
                 <span class="school-name">Kyoto University</span>
                 <span class="edu-years">Apr 2015 – Mar 2019</span>
@@ -428,71 +402,18 @@
       setTimeout(type,350);
     });
 
-    // Particles (upgraded, lightweight)
-    (function(){
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if(reduce) return;
-
-      const c = document.getElementById('particles-container');
-      const MAX = 36;               // increased from 4
-      const SPAWN_MS = 600;         // faster spawn
-      const LIFETIME_MS = 20000;    // keep same
-
-      function createParticle(){
-        if(!c) return;
-        if(c.children.length >= MAX) return;
-
-        const p = document.createElement('div');
-        p.className = 'particle';
-
-        const size = (Math.random()*6 + 2).toFixed(1); // 2–8px
-        const drift = (Math.random()*240 - 120).toFixed(0) + 'px'; // -120 to +120px
-        const dur = (Math.random()*10 + 15).toFixed(1) + 's'; // 15–25s
-        const left = (Math.random()*100).toFixed(2) + '%';
-        const opacity = (Math.random()*0.18 + 0.06).toFixed(2); // 0.06–0.24
-
-        p.style.cssText = `
-          width:${size}px;height:${size}px;left:${left};
-          --driftX:${drift};animation-duration:${dur};
-          opacity:${opacity};
-        `;
-        c.appendChild(p);
-        setTimeout(()=>p.remove(), LIFETIME_MS);
+    // Particles
+    function createParticle(){
+      const c=document.getElementById('particles-container');
+      if(c && c.children.length<4){
+        const p=document.createElement('div'); p.className='particle';
+        p.style.cssText=`width:${Math.random()*4+2}px;height:${Math.random()*4+2}px;left:${Math.random()*100}%;animation-delay:0s;animation-duration:${Math.random()*10+15}s;`;
+        c.appendChild(p); setTimeout(()=>p.remove(),20000);
       }
+    }
+    setInterval(createParticle,3500); for(let i=0;i<2;i++){ setTimeout(createParticle,i*1000); }
 
-      for(let i=0;i<15;i++) setTimeout(createParticle, i*120);
-      setInterval(createParticle, SPAWN_MS);
-    })();
-
-    // Cursor sparkle trail (subtle)
-    (function(){
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if(reduce) return;
-
-      let last = 0; const MAX = 80; const pool = [];
-      window.addEventListener('mousemove', (e)=>{
-        const now = performance.now();
-        if(now - last < 12) return; // throttle
-        last = now;
-
-        const dot = document.createElement('div');
-        dot.className = 'cursor-dot';
-        dot.style.left = e.clientX + 'px';
-        dot.style.top = e.clientY + 'px';
-        const s = (Math.random()*6 + 4).toFixed(0); // 4–10px
-        dot.style.width = s+'px';
-        dot.style.height = s+'px';
-        dot.style.opacity = (Math.random()*0.25 + 0.15).toFixed(2);
-
-        document.body.appendChild(dot);
-        pool.push(dot);
-
-        setTimeout(()=>{ dot.remove(); }, 650);
-        if(pool.length > MAX){ const old = pool.shift(); if(old) old.remove(); }
-      }, {passive:true});
-    })();
-
-    // Highlight your name in authors (full name only)
+    // Highlight your name in authors (full name only). In MQM paper, this naturally only highlights yours (not Yoshiro).
     (function highlightMyName(){
       document.querySelectorAll('.pub-authors').forEach(el=>{
         el.innerHTML = el.innerHTML.replace(/Yuiki\s+Takahashi/g,'<span class="me">Yuiki Takahashi</span>');
