@@ -205,6 +205,20 @@
     .emoji-btn.ping{animation:ping .5s ease}
     .theme-toggle{position:fixed;top:14px;right:14px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:999px;padding:6px 10px;cursor:pointer;display:flex;align-items:center;gap:8px;z-index:1000;box-shadow:var(--shadow-md);transition:all .25s ease;font-size:13px;color:var(--text-secondary)}
     .theme-toggle:hover{transform:translateY(-1px);box-shadow:var(--shadow-lg)}
+
+    /* Roll back Education to no-logo version */
+    .edu-logo { display: none !important; }
+
+    .edu-list li{
+      grid-template-columns: minmax(160px,260px) 1fr !important;
+      align-items: start !important;
+    }
+
+    @media (max-width:968px){
+      .edu-list li{ grid-template-columns: 1fr !important; }
+    }
+
+
   </style>
 </head>
 <body>
@@ -221,6 +235,7 @@
     <aside class="sidebar">
       <div class="sidebar-content">
         <div class="profile-photo"><img src="pic.png" alt="Yuiki Takahashi"></div>
+        <h3>Yuiki Takahashi</h5>
         <h5>AMO Physics • Quantum Sensing • Precision measurements</h5>
 
         <div class="sidebar-contact">
