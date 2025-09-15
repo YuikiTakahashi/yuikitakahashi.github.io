@@ -28,15 +28,18 @@
       transition:background-color .3s ease,color .3s ease;
     }
 
+    /* Layout */
     .main-container{max-width:var(--max-width);margin:0 auto;position:relative}
     .content-wrapper{display:flex;gap:28px;padding:0 16px 40px;margin:0 auto;max-width:var(--max-width)}
 
+    /* Header (compact) */
     header{padding:28px 16px 12px;text-align:center}
     .header-text h1{font-size:32px;font-weight:700;margin-bottom:6px;color:var(--text-primary);display:inline-block}
     .typing-text{background:linear-gradient(90deg,var(--accent),var(--accent-hover));
       -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
     .affiliation{color:var(--text-muted);font-size:15px;margin-bottom:10px}
 
+    /* Nav (compact) */
     nav{border-top:1px solid var(--border);border-bottom:1px solid var(--border);
       padding:8px 0;margin:0 16px 16px;position:sticky;top:0;background:var(--bg);z-index:100;backdrop-filter:blur(10px);text-align:center}
     nav ul{list-style:none;display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
@@ -44,6 +47,7 @@
     nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent);transition:width .25s}
     nav a:hover{color:var(--accent)} nav a:hover::after{width:100%}
 
+    /* Sidebar */
     .sidebar{width:var(--sidebar-width);flex-shrink:0;position:sticky;top:84px;height:fit-content}
     .sidebar-content{background:var(--bg-secondary);border:1px solid var(--border);border-radius:12px;
       padding:18px 16px;text-align:center;box-shadow:var(--shadow-sm)}
@@ -54,6 +58,7 @@
     .profile-photo img{width:100%;height:100%;object-fit:cover}
     .sidebar h5{font-size:13.5px;color:var(--text-secondary);font-weight:600;margin-bottom:10px}
 
+    /* Contact block (icons) */
     .sidebar-contact{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);text-align:left}
     .sidebar-contact p{display:flex;align-items:center;gap:10px;margin:8px 0;color:var(--text-primary);font-size:14px}
     .sidebar-contact strong{display:none}
@@ -71,6 +76,7 @@
     .sidebar-contact p:nth-of-type(4)::before{ -webkit-mask-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M12 3 2 8l10 5 8-4v6h2V8L12 3Zm-7 9v4l7 3 7-3v-4l-7 3-7-3Z'/></svg>");
       mask-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M12 3 2 8l10 5 8-4v6h2V8L12 3Zm-7 9v4l7 3 7-3v-4l-7 3-7-3Z'/></svg>"); }
 
+    /* Main */
     .main-content{flex:1;min-width:0}
     section{margin-bottom:var(--section-gap);scroll-margin-top:72px}
     h2{
@@ -80,11 +86,11 @@
     h2::after{content:'';position:absolute;bottom:-1px;left:0;width:68px;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
     p{color:var(--text-secondary);margin-bottom:10px;line-height:var(--tight-line)}
 
-    /* Neutral list style (no blue highlights) */
+    /* Neutral list style (no blue highlights) + black text */
     .nice-list{list-style:none;padding:0;margin:0}
     .nice-list li{
       position:relative;padding:8px 8px 8px 24px;border-bottom:1px solid var(--border);
-      font-size:14px;color:var(--text-secondary);transition:background-color .2s ease, padding-left .2s ease;
+      font-size:14px;color:var(--text-primary);transition:background-color .2s ease, padding-left .2s ease;
     }
     .nice-list li:last-child{border-bottom:none}
     .nice-list li::before{
@@ -93,6 +99,11 @@
     }
     .nice-list li:hover{background:var(--bg-secondary);padding-left:26px}
 
+    /* Education two-column layout */
+    .edu-list li{display:grid;grid-template-columns:minmax(160px,260px) 1fr;gap:12px;align-items:start}
+    .edu-school{font-weight:700}
+    .edu-detail{color:var(--text-primary)}
+
     /* Publications */
     .publication{padding:12px 0;border-bottom:1px solid var(--border);transition:background-color .25s ease,padding-left .25s ease}
     .publication:hover{background:var(--accent-light);padding-left:6px}
@@ -100,31 +111,35 @@
     .pub-title{font-weight:700;font-size:15.5px;margin-bottom:4px;color:var(--text-primary)}
     .pub-authors,.pub-venue,.pub-description{font-size:13.5px}
     .pub-authors .me{font-weight:800;color:var(--accent)}
-    /* Venue: emphasized typographically only (no colored pill) */
     .pub-venue{font-weight:700;color:var(--text-primary);font-style:italic;margin:4px 0 6px;display:inline-block}
     .pub-links{display:flex;gap:10px;font-size:13.5px}
     .pub-mentions{font-size:13px;color:var(--text-secondary);margin-top:6px}
     .pub-mentions strong{color:var(--text-primary)}
     .pub-mentions a{font-weight:600}
 
+    /* Cards */
     .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:10px}
     .card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;padding:14px;transition:transform .25s,box-shadow .25s}
     .card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
 
+    /* Footer */
     footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--border);text-align:center;color:var(--text-muted);font-size:13.5px}
 
+    /* Responsive */
     @media (max-width:968px){
       .content-wrapper{flex-direction:column}
       .sidebar{width:100%;position:static;margin-bottom:20px}
       .sidebar-content{max-width:420px;margin:0 auto}
       header{padding:20px 16px 10px}
       .header-text h1{font-size:28px}
+      .edu-list li{grid-template-columns:1fr}
     }
     @media (max-width:768px){
       .header-text h1{font-size:26px}
       .profile-photo{width:140px;height:140px}
     }
 
+    /* Particles & emoji (kept) */
     .particles-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;overflow:hidden}
     .particle{position:absolute;background:var(--accent);border-radius:50%;opacity:.1;animation:float-up 20s infinite linear}
     @keyframes float-up{0%{transform:translateY(100vh) translateX(0);opacity:0;}10%{opacity:.1;}90%{opacity:.1;}100%{transform:translateY(-100vh) translateX(100px);opacity:0;}}
@@ -138,27 +153,31 @@
   </style>
 </head>
 <body>
+  <!-- Background particles -->
   <div class="particles-bg" id="particles-container"></div>
 
+  <!-- Theme Toggle -->
   <div class="theme-toggle" onclick="toggleTheme()">
     <span class="icon" id="theme-icon">☀️</span><span id="theme-text">Light</span>
   </div>
 
   <div class="content-wrapper">
+    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-content">
         <div class="profile-photo">YT</div>
         <h5>AMO Physics • Quantum Sensing • Precision measurements</h5>
 
         <div class="sidebar-contact">
+          <p><strong>Email:</strong> yuiki at caltech.edu</p>
           <p><strong>Location:</strong> Pasadena, CA 91125</p>
           <p><strong>ORCID:</strong> <a href="https://github.com/yourname">@yourname</a></p>
           <p><strong>Google Scholar:</strong> <a href="https://github.com/yourname">@yourname</a></p>
-          <p><strong>Email:</strong> yuiki at caltech.edu</p>
         </div>
       </div>
     </aside>
 
+    <!-- Main -->
     <main class="main-container">
       <header>
         <div class="header-text">
@@ -186,6 +205,7 @@
           </p>
         </section>
 
+        <!-- Recent News -->
         <section id="news">
           <h2>Recent News</h2>
           <ul class="nice-list">
@@ -195,77 +215,91 @@
           </ul>
         </section>
 
+        <!-- Publications -->
         <section id="publications">
           <h2>Selected Publications</h2>
 
           <div class="publication">
             <div class="pub-title">Engineered Molecular Clock Transitions for Symmetry Violation Searches</div>
-            <div class="pub-authors">Y. Takahashi, H. D. Ramachandran, A. Jadbabaie, Y. Zeng, C. Zhang, N. R. Hutzler</div>
+            <div class="pub-authors">Yuiki Takahashi, Harish D. Ramachandran, Arian Jadbabaie, Yi Zeng, Chi Zhang, Nicholas R. Hutzler</div>
             <div class="pub-venue">arXiv:2508.06787 (2025)</div>
-            <div class="pub-description">We demonstrate clock transitions whose electric and magnetic sensitivities are simultaneously suppressed ("magic"/CP-FIT), while retaining high eEDM response.</div>
+            <div class="pub-description">Demonstrates molecular clock transitions with simultaneous electric- and magnetic-field insensitivity while retaining strong eEDM response, enabling noise-robust precision tests of symmetry violation.</div>
             <div class="pub-links">
               <a href="https://arxiv.org/abs/2508.06787">arXiv</a>
-              <a href="#">PDF</a>
+              <a href="#">arXiv</a>
             </div>
           </div>
 
           <div class="publication">
             <div class="pub-title">Engineering field-insensitive molecular clock transitions for symmetry violation searches</div>
-            <div class="pub-authors">Y. Takahashi, C. Zhang, A. Jadbabaie, N. R. Hutzler</div>
+            <div class="pub-authors">Yuiki Takahashi, Chi Zhang, Arian Jadbabaie, Nicholas R. Hutzler</div>
             <div class="pub-venue">Physical Review Letters 131, 183003 (2023)</div>
-            <div class="pub-description">Concept & design principles for creating field-noise-robust molecular clock transitions applicable across platforms.</div>
+            <div class="pub-description">Introduces and validates design principles for constructing field-noise-robust molecular clock transitions broadly applicable across precision-measurement platforms.</div>
             <div class="pub-links">
               <a href="#">Journal</a>
-              <a href="#">PDF</a>
+              <a href="#">arXiv</a>
             </div>
             <div class="pub-mentions"><strong>Featured in:</strong>
-              <a href="LINK1">Nature News</a>, <a href="LINK2">Physics Magazine</a>
+              <a href="https://physics.aps.org/articles/v16/s154">Physics Magazine</a>,
+              <a href="https://www.chemistryworld.com/opinion/searching-for-new-physics-using-ultracold-molecules/4018447.article">Chemistry World</a>,
+              <a href="https://www.jstage.jst.go.jp/article/butsuri/79/6/79_298/_article/-char/en">Butsuri</a>
             </div>
           </div>
 
           <div class="publication">
             <div class="pub-title">Characterizing the Fundamental Bending Vibration of a Linear Polyatomic Molecule for Symmetry Violation Searches</div>
-            <div class="pub-authors">A. Jadbabaie*, Y. Takahashi* et al. (*equal contribution)</div>
+            <div class="pub-authors">Arian Jadbabaie*, Yuiki Takahashi*, Nickolas H. Pilgram, Chandler J. Conn, Yi Zeng, Chi Zhang, Nicholas R. Hutzler</div>
             <div class="pub-venue">New Journal of Physics 25, 073014 (2023)</div>
-            <div class="pub-description">Precision spectroscopy of the v₂ bending mode and l-doubling—key enablers for polyatomic eEDM sensitivity and state control.</div>
+            <div class="pub-description">Performs precision spectroscopy of the v₂ bending mode and ℓ-doubling, establishing key structure for state control and enhanced sensitivity in polyatomic eEDM searches.</div>
             <div class="pub-links">
               <a href="#">Journal</a>
-              <a href="#">PDF</a>
+              <a href="#">arXiv</a>
             </div>
           </div>
 
           <div class="publication">
             <div class="pub-title">Measuring the nuclear magnetic quadrupole moment of optically trapped ytterbium atoms in the metastable state</div>
-            <div class="pub-authors">A. Sunaga, Y. Takahashi, A. Vutha, Y. Takahashi</div>
+            <div class="pub-authors">Ayaki Sunaga, Yuiki Takahashi, Amar Vutha, Yoshiro Takahashi</div>
             <div class="pub-venue">New Journal of Physics 26, 023023 (2024)</div>
-            <div class="pub-description">Atomic platform toward symmetry-violating nuclear moments with optical trapping and precision spectroscopy.</div>
+            <div class="pub-description">Demonstrates an atomic platform using optically trapped metastable ytterbium for probing symmetry-violating nuclear moments via precision spectroscopy.</div>
             <div class="pub-links">
               <a href="#">Journal</a>
-              <a href="#">PDF</a>
+              <a href="#">arXiv</a>
             </div>
           </div>
 
           <div class="publication">
             <div class="pub-title">Simulation of cryogenic buffer gas beams</div>
-            <div class="pub-authors">Y. Takahashi, D. Shlivko, G. Woolls, N. R. Hutzler</div>
+            <div class="pub-authors">Yuiki Takahashi, David Shlivko, Gabriel Woolls, Nicholas R. Hutzler</div>
             <div class="pub-venue">Physical Review Research 3, 023018 (2021)</div>
-            <div class="pub-description">Modeling and validating source dynamics and beam properties for cold-molecule experiments.</div>
+            <div class="pub-description">Models and validates buffer-gas source dynamics and resulting beam properties relevant to cold-molecule experiments and sources.</div>
             <div class="pub-links">
               <a href="#">Journal</a>
-              <a href="#">PDF</a>
+              <a href="#">arXiv</a>
             </div>
           </div>
         </section>
 
+        <!-- Education (two-column) -->
         <section id="education">
           <h2>Education</h2>
-          <ul class="nice-list">
-            <li><strong>Ph.D. in Physics</strong> — California Institute of Technology (Oct 2019 – Present)</li>
-            <li><strong>Graduate Coursework in Physics</strong> — The University of Tokyo (Apr 2019 – Sep 2019)</li>
-            <li><strong>B.S. in Physics</strong> — Kyoto University (Apr 2015 – Mar 2019)</li>
+          <ul class="nice-list edu-list">
+            <li>
+              <span class="edu-school">California Institute of Technology</span>
+              <span class="edu-detail"><strong>Ph.D. in Physics</strong> — Division of Physics, Mathematics, and Astronomy (Oct 2019 – Present)</span>
+            </li>
+            <li>
+              <span class="edu-school">The University of Tokyo</span>
+              <span class="edu-detail"><strong>Graduate Coursework in Physics</strong> — Department of Basic Science, Graduate School of Arts and Sciences (Apr 2019 – Sep 2019)</span>
+            </li>
+            <li>
+              <span class="edu-school">Kyoto University</span>
+              <span class="edu-detail"><strong>B.S. in Physics</strong> — Division of Physics, Faculty of Science (Apr 2015 – Mar 2019)</span>
+            </li>
           </ul>
         </section>
 
+        <!-- Awards -->
         <section id="awards">
           <h2>Honors & Awards</h2>
           <ul class="nice-list">
@@ -285,6 +319,7 @@
     </main>
   </div>
 
+  <!-- Emoji buttons -->
   <div class="emoji-react">
     <button class="emoji-btn" onclick="emojiReact(this, '⚛️')">⚛️</button>
     <button class="emoji-btn" onclick="emojiReact(this, '🔬')">🔬</button>
@@ -320,6 +355,7 @@
     }
     document.getElementById('year').textContent=new Date().getFullYear();
 
+    // Typing effect
     document.addEventListener('DOMContentLoaded',function(){
       const el=document.querySelector('.typing-text'); if(!el) return;
       const text=el.textContent; el.textContent=''; let i=0;
@@ -327,6 +363,7 @@
       setTimeout(type,350);
     });
 
+    // Particles
     function createParticle(){
       const c=document.getElementById('particles-container');
       if(c && c.children.length<4){
@@ -337,27 +374,10 @@
     }
     setInterval(createParticle,3500); for(let i=0;i<2;i++){ setTimeout(createParticle,i*1000); }
 
-    // Highlight your name in authors
+    // Highlight your name in authors (full name only). In MQM paper, this naturally only highlights yours (not Yoshiro).
     (function highlightMyName(){
-      document.querySelectorAll('.publication').forEach(pub=>{
-        const titleEl=pub.querySelector('.pub-title');
-        const authorsEl=pub.querySelector('.pub-authors');
-        if(!authorsEl) return;
-
-        let html=authorsEl.innerHTML;
-
-        // Special case: MQM paper – highlight only the FIRST "Y. Takahashi"
-        if(titleEl && titleEl.textContent.includes('Measuring the nuclear magnetic quadrupole moment')){
-          html=html.replace(/Y\.\s*Takahashi/,'<span class="me">$&</span>');
-          authorsEl.innerHTML=html;
-          return;
-        }
-
-        // General case: highlight all occurrences of your name
-        html=html
-          .replace(/Yuiki\s+Takahashi/g,'<span class="me">$&</span>')
-          .replace(/Y\.?\s*Takahashi/g,'<span class="me">$&</span>');
-        authorsEl.innerHTML=html;
+      document.querySelectorAll('.pub-authors').forEach(el=>{
+        el.innerHTML = el.innerHTML.replace(/Yuiki\s+Takahashi/g,'<span class="me">Yuiki Takahashi</span>');
       });
     })();
   </script>
