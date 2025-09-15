@@ -20,7 +20,7 @@
       --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
       --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
       --shadow-lg: 0 10px 30px rgba(0,0,0,0.1);
-      --max-width: 800px;
+      --sidebar-width: 320px;
     }
 
     [data-theme="dark"] {
@@ -57,11 +57,160 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* Container */
-    .container {
-      max-width: var(--max-width);
+    /* Main Layout */
+    .layout-container {
+      display: flex;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 60px 20px;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: var(--sidebar-width);
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(calc(-600px));
+      height: 100vh;
+      padding: 60px 40px;
+      background: var(--bg);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      z-index: 10;
+    }
+
+    .sidebar-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .profile-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 25px;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s ease;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 48px;
+      font-weight: bold;
+    }
+
+    .profile-photo:hover {
+      transform: scale(1.05);
+    }
+
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .sidebar h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .typing-text {
+      background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .sidebar .tagline {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .sidebar .affiliation {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 30px;
+      line-height: 1.5;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar-nav {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .sidebar-nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar-nav li {
+      margin-bottom: 8px;
+    }
+
+    .sidebar-nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 15px;
+      display: block;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .sidebar-nav a:hover {
+      color: var(--accent);
+      background: var(--accent-light);
+      transform: translateX(5px);
+    }
+
+    /* Contact Info in Sidebar */
+    .sidebar-contact {
+      width: 100%;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .sidebar-contact p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .sidebar-contact strong {
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .sidebar-contact a {
+      color: var(--accent);
+      text-decoration: none;
+      word-break: break-word;
+    }
+
+    .sidebar-contact a:hover {
+      text-decoration: underline;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+      padding: 60px 60px 60px 40px;
+      max-width: calc(100% - var(--sidebar-width));
     }
 
     /* Theme Toggle */
@@ -87,122 +236,6 @@
     .theme-toggle:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-lg);
-    }
-
-    /* Header */
-    header {
-      margin-bottom: 60px;
-      position: relative;
-    }
-
-    .header-content {
-      display: flex;
-      align-items: flex-start;
-      gap: 30px;
-      margin-bottom: 30px;
-    }
-
-    .profile-photo {
-      width: 140px;
-      height: 140px;
-      border-radius: 12px;
-      overflow: hidden;
-      flex-shrink: 0;
-      box-shadow: var(--shadow-md);
-      transition: transform 0.3s ease;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 36px;
-      font-weight: bold;
-    }
-
-    .profile-photo:hover {
-      transform: scale(1.05) rotate(2deg);
-    }
-
-    .profile-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .header-text h1 {
-      font-size: 36px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--text-primary);
-      position: relative;
-      display: inline-block;
-    }
-
-    .typing-text {
-      background: linear-gradient(90deg, var(--accent), var(--accent-hover));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .tagline {
-      font-size: 18px;
-      color: var(--text-secondary);
-      margin-bottom: 12px;
-    }
-
-    .affiliation {
-      color: var(--text-muted);
-      font-size: 16px;
-      margin-bottom: 20px;
-    }
-
-    /* Navigation */
-    nav {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 0;
-      margin-bottom: 40px;
-      position: sticky;
-      top: 0;
-      background: var(--bg);
-      z-index: 100;
-      backdrop-filter: blur(10px);
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 15px;
-      position: relative;
-      transition: color 0.3s ease;
-      padding: 4px 0;
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: width 0.3s ease;
-    }
-
-    nav a:hover {
-      color: var(--accent);
-    }
-
-    nav a:hover::after {
-      width: 100%;
     }
 
     /* Sections */
@@ -361,63 +394,15 @@
       border-bottom: none;
     }
 
-    /* Contact buttons */
-    .contact-links {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-top: 20px;
+    /* Awards list */
+    .awards-list {
+      list-style: none;
+      padding: 0;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background: var(--accent);
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      font-size: 14px;
-      font-weight: 500;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s ease, height 0.6s ease;
-    }
-
-    .btn:hover {
-      background: var(--accent-hover);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-      text-decoration: none;
-      color: white;
-    }
-
-    .btn:hover::before {
-      width: 300px;
-      height: 300px;
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-    }
-
-    .btn-secondary:hover {
-      background: var(--accent);
-      color: white;
+    .awards-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
     }
 
     /* Fun floating particles */
@@ -461,7 +446,7 @@
     .emoji-react {
       position: fixed;
       bottom: 20px;
-      left: 20px;
+      right: 20px;
       display: flex;
       gap: 10px;
       z-index: 100;
@@ -516,33 +501,71 @@
       font-size: 14px;
     }
 
+    /* Mobile menu toggle */
+    .mobile-menu-toggle {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1001;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+    }
+
+    .mobile-menu-toggle:hover {
+      background: var(--accent-light);
+    }
+
     /* Responsive */
+    @media (max-width: 968px) {
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      .sidebar {
+        transform: translateX(-100%);
+        left: 0;
+        transition: transform 0.3s ease;
+        box-shadow: var(--shadow-lg);
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+      }
+
+      .main-content {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 60px 20px;
+      }
+
+      .theme-toggle {
+        top: 20px;
+        right: 20px;
+      }
+    }
+
     @media (max-width: 768px) {
-      .container {
-        padding: 40px 20px;
-      }
-
-      .header-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .header-text h1 {
-        font-size: 28px;
-      }
-
-      nav ul {
-        justify-content: center;
-      }
-
       .card-grid {
         grid-template-columns: 1fr;
       }
 
-      .theme-toggle {
-        top: 10px;
-        right: 10px;
+      .sidebar {
+        width: 280px;
+        padding: 40px 20px;
+      }
+
+      .profile-photo {
+        width: 140px;
+        height: 140px;
+      }
+
+      .sidebar h1 {
+        font-size: 24px;
       }
     }
   </style>
@@ -557,151 +580,163 @@
     <span id="theme-text">Light</span>
   </div>
 
-  <div class="container">
-    <header>
-      <div class="header-content">
+  <!-- Mobile Menu Toggle -->
+  <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+    <span style="font-size: 24px;">☰</span>
+  </div>
+
+  <div class="layout-container">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-content">
         <div class="profile-photo">
           <!-- Replace with your photo: <img src="your-photo.jpg" alt="Yuiki Takahashi"> -->
           YT
         </div>
-        <div class="header-text">
-          <h1><span class="typing-text">Yuiki Takahashi</span></h1>
-          <div class="tagline">AMO Physics • Quantum Sensing • Precision measurements</div>
-          <div class="affiliation">PhD Candidate in Physics, Caltech<br>Hutzler Group</div>
-        </div>
-      </div>
-    </header>
 
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#news">News</a></li>
-        <li><a href="#publications">Publications</a></li>
-        <li><a href="#awards">Awards</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+        <h1><span class="typing-text">Yuiki Takahashi</span></h1>
+        <div class="tagline">AMO Physics • Quantum Sensing • Precision measurements</div>
+        <div class="affiliation">PhD Candidate in Physics, Caltech<br>Hutzler Group</div>
 
-
-    <section id="about">
-      <h2>About</h2>
-      <p>
-        I am a PhD candidate in Physics at Caltech working with Professor Nick Hutzler. My research focuses on developing quantum sensing protocols for fundamental physics, particularly in the context of precision measurements and symmetry violation searches.
-      </p>
-    </section>
-
-
-    <section id="news">
-      <h2>Recent News</h2>
-      <div class="card-grid">
-        <div class="card">
+        <nav class="sidebar-nav">
           <ul>
-            <li>Aug 15, 2025 — Ketterle group, MIT</li>
-            <li>Jul 22, 2025 — Krenn group, Tübingen</li>
-            <li>Jun 10, 2025 — DAMOP Conference</li>
+            <li><a href="#about" onclick="closeMobileMenu()">About</a></li>
+            <li><a href="#news" onclick="closeMobileMenu()">News</a></li>
+            <li><a href="#publications" onclick="closeMobileMenu()">Publications</a></li>
+            <li><a href="#awards" onclick="closeMobileMenu()">Awards</a></li>
           </ul>
-      </div>
-    </section>
+        </nav>
 
-
-
-    <section id="publications">
-      <h2>Selected Publications</h2>
-
-      <div class="publication">
-        <div class="pub-title">Engineered Molecular Clock Transitions for Symmetry Violation Searches</div>
-        <div class="pub-authors">Y. Takahashi, H. D. Ramachandran, A. Jadbabaie, Y. Zeng, C. Zhang, N. R. Hutzler</div>
-        <div class="pub-venue">arXiv:2508.06787 (2025)</div>
-        <div class="pub-description">We demonstrate clock transitions whose electric and magnetic sensitivities are simultaneously suppressed ("magic"/CP‑FIT), while retaining high eEDM response.</div>
-        <div class="pub-links">
-          <a href="https://arxiv.org/abs/2508.06787">arXiv</a>
-          <a href="#">PDF</a>
+        <div class="sidebar-contact">
+          <p>
+            <strong>Email:</strong>
+            yuiki_at_caltech.edu<br>(please replace _at_ with @)
+          </p>
+          <p>
+            <strong>Location:</strong>
+            Pasadena, CA 91125
+          </p>
+          <p>
+            <strong>ORCID:</strong>
+            <a href="https://github.com/yourname">@yourname</a>
+          </p>
+          <p>
+            <strong>Google Scholar:</strong>
+            <a href="https://github.com/yourname">@yourname</a>
+          </p>
         </div>
       </div>
+    </aside>
 
-      <div class="publication">
-        <div class="pub-title">Engineering field‑insensitive molecular clock transitions for symmetry violation searches</div>
-        <div class="pub-authors">Y. Takahashi, C. Zhang, A. Jadbabaie, N. R. Hutzler</div>
-        <div class="pub-venue">Physical Review Letters 131, 183003 (2023)</div>
-        <div class="pub-description">Concept & design principles for creating field‑noise‑robust molecular clock transitions applicable across platforms.</div>
-        <div class="pub-links">
-          <a href="#">Journal</a>
-          <a href="#">PDF</a>
+    <!-- Main Content -->
+    <main class="main-content">
+      <section id="about">
+        <h2>About</h2>
+        <p>
+          I am a PhD candidate in Physics at Caltech working with Professor Nick Hutzler. My research focuses on developing quantum sensing protocols for fundamental physics, particularly in the context of precision measurements and symmetry violation searches.
+        </p>
+      </section>
+
+      <section id="news">
+        <h2>Recent News</h2>
+        <div class="card-grid">
+          <div class="card">
+            <ul>
+              <li>Aug 15, 2025 — Ketterle group, MIT</li>
+              <li>Jul 22, 2025 — Krenn group, Tübingen</li>
+              <li>Jun 10, 2025 — DAMOP Conference</li>
+            </ul>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div class="publication">
-        <div class="pub-title">Characterizing the Fundamental Bending Vibration of a Linear Polyatomic Molecule for Symmetry Violation Searches</div>
-        <div class="pub-authors">A. Jadbabaie*, Y. Takahashi* et al. (*equal contribution)</div>
-        <div class="pub-venue">New Journal of Physics 25, 073014 (2023)</div>
-        <div class="pub-description">Precision spectroscopy of the v₂ bending mode and l‑doubling—key enablers for polyatomic eEDM sensitivity and state control.</div>
-        <div class="pub-links">
-          <a href="#">Journal</a>
-          <a href="#">PDF</a>
+      <section id="publications">
+        <h2>Selected Publications</h2>
+
+        <div class="publication">
+          <div class="pub-title">Engineered Molecular Clock Transitions for Symmetry Violation Searches</div>
+          <div class="pub-authors">Y. Takahashi, H. D. Ramachandran, A. Jadbabaie, Y. Zeng, C. Zhang, N. R. Hutzler</div>
+          <div class="pub-venue">arXiv:2508.06787 (2025)</div>
+          <div class="pub-description">We demonstrate clock transitions whose electric and magnetic sensitivities are simultaneously suppressed ("magic"/CP‑FIT), while retaining high eEDM response.</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2508.06787">arXiv</a>
+            <a href="#">PDF</a>
+          </div>
         </div>
-      </div>
 
-      <div class="publication">
-        <div class="pub-title">Measuring the nuclear magnetic quadrupole moment of optically trapped ytterbium atoms in the metastable state</div>
-        <div class="pub-authors">A. Sunaga, Y. Takahashi, A. Vutha, Y. Takahashi</div>
-        <div class="pub-venue">New Journal of Physics 26, 023023 (2024)</div>
-        <div class="pub-description">Atomic platform toward symmetry‑violating nuclear moments with optical trapping and precision spectroscopy.</div>
-        <div class="pub-links">
-          <a href="#">Journal</a>
-          <a href="#">PDF</a>
+        <div class="publication">
+          <div class="pub-title">Engineering field‑insensitive molecular clock transitions for symmetry violation searches</div>
+          <div class="pub-authors">Y. Takahashi, C. Zhang, A. Jadbabaie, N. R. Hutzler</div>
+          <div class="pub-venue">Physical Review Letters 131, 183003 (2023)</div>
+          <div class="pub-description">Concept & design principles for creating field‑noise‑robust molecular clock transitions applicable across platforms.</div>
+          <div class="pub-links">
+            <a href="#">Journal</a>
+            <a href="#">PDF</a>
+          </div>
         </div>
-      </div>
 
-      <div class="publication">
-        <div class="pub-title">Simulation of cryogenic buffer gas beams</div>
-        <div class="pub-authors">Y. Takahashi, D. Shlivko, G. Woolls, N. R. Hutzler</div>
-        <div class="pub-venue">Physical Review Research 3, 023018 (2021)</div>
-        <div class="pub-description">Modeling and validating source dynamics and beam properties for cold‑molecule experiments.</div>
-        <div class="pub-links">
-          <a href="#">Journal</a>
-          <a href="#">PDF</a>
+        <div class="publication">
+          <div class="pub-title">Characterizing the Fundamental Bending Vibration of a Linear Polyatomic Molecule for Symmetry Violation Searches</div>
+          <div class="pub-authors">A. Jadbabaie*, Y. Takahashi* et al. (*equal contribution)</div>
+          <div class="pub-venue">New Journal of Physics 25, 073014 (2023)</div>
+          <div class="pub-description">Precision spectroscopy of the v₂ bending mode and l‑doubling—key enablers for polyatomic eEDM sensitivity and state control.</div>
+          <div class="pub-links">
+            <a href="#">Journal</a>
+            <a href="#">PDF</a>
+          </div>
         </div>
-      </div>
-    </section>
 
+        <div class="publication">
+          <div class="pub-title">Measuring the nuclear magnetic quadrupole moment of optically trapped ytterbium atoms in the metastable state</div>
+          <div class="pub-authors">A. Sunaga, Y. Takahashi, A. Vutha, Y. Takahashi</div>
+          <div class="pub-venue">New Journal of Physics 26, 023023 (2024)</div>
+          <div class="pub-description">Atomic platform toward symmetry‑violating nuclear moments with optical trapping and precision spectroscopy.</div>
+          <div class="pub-links">
+            <a href="#">Journal</a>
+            <a href="#">PDF</a>
+          </div>
+        </div>
 
+        <div class="publication">
+          <div class="pub-title">Simulation of cryogenic buffer gas beams</div>
+          <div class="pub-authors">Y. Takahashi, D. Shlivko, G. Woolls, N. R. Hutzler</div>
+          <div class="pub-venue">Physical Review Research 3, 023018 (2021)</div>
+          <div class="pub-description">Modeling and validating source dynamics and beam properties for cold‑molecule experiments.</div>
+          <div class="pub-links">
+            <a href="#">Journal</a>
+            <a href="#">PDF</a>
+          </div>
+        </div>
+      </section>
 
-    <section id="awards">
-      <h2>Honors & Awards</h2>
-      <ul style="list-style: none; padding: 0;">
-        <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">
-          <strong>Tombrello Scholarship</strong> (Jun 2025–present)
-        </li>
-        <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">
-          <strong>IQIM Eddleman Fellowship</strong> (Sep 2023–Sep 2024)
-        </li>
-        <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">
-          <strong>John S. Stemple Memorial Prize</strong> (May 2023)
-        </li>
-        <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">
-          <strong>Masason Foundation Research Grant</strong> (Jul 2021–Jun 2023)
-        </li>
-        <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">
-          <strong>Masason Foundation Fellowship</strong> (2018–2023)
-        </li>
-        <li style="padding: 8px 0;">
-          <strong>JPS Student Presentation Award</strong> (Mar 2021)
-        </li>
-      </ul>
-    </section>
+      <section id="awards">
+        <h2>Honors & Awards</h2>
+        <ul class="awards-list">
+          <li>
+            <strong>Tombrello Scholarship</strong> (Jun 2025–present)
+          </li>
+          <li>
+            <strong>IQIM Eddleman Fellowship</strong> (Sep 2023–Sep 2024)
+          </li>
+          <li>
+            <strong>John S. Stemple Memorial Prize</strong> (May 2023)
+          </li>
+          <li>
+            <strong>Masason Foundation Research Grant</strong> (Jul 2021–Jun 2023)
+          </li>
+          <li>
+            <strong>Masason Foundation Fellowship</strong> (2018–2023)
+          </li>
+          <li style="border-bottom: none;">
+            <strong>JPS Student Presentation Award</strong> (Mar 2021)
+          </li>
+        </ul>
+      </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>
-        <strong>Email:</strong> yuiki_at_caltech.edu (please replace _at_ with @)</a><br>
-        <strong>Address:</strong> Pasadena, CA 91125<br>
-        <strong>ORCID:</strong> <a href="https://github.com/yourname">@yourname</a>
-      </p>
-    </section>
-
-    <footer>
-      <p>© <span id="year"></span> Yuiki Takahashi. Built with GitHub Pages.</p>
-    </footer>
+      <footer>
+        <p>© <span id="year"></span> Yuiki Takahashi. Built with GitHub Pages.</p>
+      </footer>
+    </main>
   </div>
 
   <!-- Fun emoji reactions -->
@@ -735,6 +770,19 @@
       }
     }
 
+    // Mobile menu functions
+    function toggleMobileMenu() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
+
+    function closeMobileMenu() {
+      const sidebar = document.getElementById('sidebar');
+      if (window.innerWidth <= 968) {
+        sidebar.classList.remove('active');
+      }
+    }
+
     // Set initial theme (default to light)
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
@@ -750,7 +798,7 @@
       floatingEmoji.style.cssText = `
         position: fixed;
         bottom: 60px;
-        left: ${button.offsetLeft + 10}px;
+        right: ${button.offsetLeft + 10}px;
         font-size: 30px;
         z-index: 1000;
         animation: floatUp 2s ease-out forwards;
@@ -828,6 +876,16 @@
     for (let i = 0; i < 3; i++) {
       setTimeout(createParticle, i * 1000);
     }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const sidebar = document.getElementById('sidebar');
+      const menuToggle = document.querySelector('.mobile-menu-toggle');
+
+      if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+        sidebar.classList.remove('active');
+      }
+    });
   </script>
 </body>
 </html>
