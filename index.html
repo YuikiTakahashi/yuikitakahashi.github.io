@@ -111,12 +111,25 @@
 
     /* Education two-column layout */
     /* two-column layout already exists */
-    .edu-list li {
-      display: grid;
-      grid-template-columns: minmax(160px, 260px) 1fr;
-      gap: 12px;
-      align-items: start;
+    /* Add a narrow logo column to the grid */
+    .edu-list li{
+      display:grid;
+      grid-template-columns: 36px minmax(160px,260px) 1fr; /* [logo] [school/years] [detail] */
+      gap:12px;
+      align-items:center;
     }
+
+    /* Logo appearance */
+    .edu-logo{
+      width:28px; height:28px; object-fit:contain;
+      filter: grayscale(100%); opacity:.9;
+    }
+
+    /* Stack on mobile */
+    @media (max-width:968px){
+      .edu-list li{ grid-template-columns: 28px 1fr; }
+    }
+
 
     /* stack school name + years on the left */
     .edu-school { display: flex; flex-direction: column; gap: 2px; }
@@ -335,6 +348,7 @@
           <h2>Education</h2>
           <ul class="nice-list edu-list">
             <li>
+              <img class="edu-logo" src="logos/caltech.svg" alt="Caltech logo">
               <span class="edu-school">
                 <span class="school-name">California Institute of Technology</span>
                 <span class="edu-years">Oct 2019 – Present</span>
