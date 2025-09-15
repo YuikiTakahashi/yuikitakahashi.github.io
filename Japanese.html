@@ -7,7 +7,7 @@
   <meta name="description" content="日本語ブログ（お笑い・雑記）" />
   <link rel="icon" href="data:," />
   <style>
-    /* ===== Base look (aligned with your main site) ===== */
+    /* ===== Base look (aligned with main site) ===== */
     :root{
       --bg:#ffffff;--bg-secondary:#fafafa;--text-primary:#1a1a1a;--text-secondary:#666;
       --text-muted:#999;--accent:#0066cc;--accent-hover:#0052a3;--accent-light:rgba(0,102,204,.08);
@@ -38,28 +38,72 @@
     nav a{font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid transparent}
     nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 
-    /* Posts */
-    .post{background:var(--bg-secondary);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin:12px 0;box-shadow:var(--shadow-sm)}
-    .post h3{margin:0 0 6px;font-size:18px;color:var(--text-primary)}
-    .post time{font-size:12.5px;color:var(--text-muted)}
-    .post p{margin:10px 0}
+    /* Posts (card body) */
+    .post-body{ padding:0 16px 14px; }
+    .post-body h3{margin:0 0 6px;font-size:18px;color:var(--text-primary)}
+    .post-body time{font-size:12.5px;color:var(--text-muted)}
+    .post-body p{margin:10px 0}
 
-    /* --- Enhancements you asked for --- */
-    /* 1) Emphasize article lede */
-    .post .lede { color: var(--text-primary); font-weight: 500; }
+    /* Emphasize article lede */
+    .post-body .lede { color: var(--text-primary); font-weight: 500; }
 
-    /* 2) Image card styling */
-    .post figure { margin: 10px 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background:var(--bg); }
-    .post figure img { display: block; width: 100%; height: auto; }
-    .post figure figcaption { font-size: 12.5px; color: var(--text-muted); padding: 6px 8px; background: var(--bg-secondary); }
+    /* Image card styling */
+    .post-body figure { margin: 10px 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background:var(--bg); }
+    .post-body figure img { display: block; width: 100%; height: auto; }
+    .post-body figure figcaption { font-size: 12.5px; color: var(--text-muted); padding: 6px 8px; background: var(--bg-secondary); }
 
-    /* 3) Responsive YouTube embeds */
+    /* Responsive YouTube embeds */
     .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-secondary); }
     .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-    /* Small UI */
-    .theme-toggle{position:fixed;top:14px;right:14px;background:var(--bg-secondary);border:1px solid var(--border);
-      border-radius:999px;padding:6px 10px;cursor:pointer;font-size:13px;color:var(--text-secondary)}
+    /* ===== Collapsible post cards ===== */
+    details.post{
+      background:var(--bg-secondary);
+      border:1px solid var(--border);
+      border-radius:10px;
+      box-shadow:var(--shadow-sm);
+      margin:12px 0;
+      overflow:hidden;
+    }
+    /* Clickable preview row */
+    details.post > summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 16px;
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap:8px;
+    }
+    details.post > summary::-webkit-details-marker { display:none; }
+    details.post > summary:focus{ outline:2px solid var(--accent-light); border-radius:8px; }
+
+    /* Title + date row */
+    .post-head{ display:flex; gap:10px; align-items:baseline; flex-wrap:wrap; }
+    .post-head h3{ margin:0; font-size:18px; color:var(--text-primary); }
+    .post-head time{ font-size:12.5px; color:var(--text-muted); }
+
+    /* One-line excerpt under the title */
+    summary .excerpt{
+      grid-column: 1 / -1;
+      margin:0;
+      color:var(--text-secondary);
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+
+    /* Chevron indicator */
+    details.post > summary::after{
+      content:"▸";
+      align-self:center;
+      opacity:.6;
+      transition:transform .2s ease;
+    }
+    details.post[open] > summary::after{ transform:rotate(90deg); }
+
+    /* Theme toggle button */
+    .theme-toggle{
+      position:fixed;top:14px;right:14px;background:var(--bg-secondary);border:1px solid var(--border);
+      border-radius:999px;padding:6px 10px;cursor:pointer;font-size:13px;color:var(--text-secondary)
+    }
     footer{margin-top:24px;text-align:center;font-size:13px;color:var(--text-muted)}
   </style>
 </head>
@@ -78,96 +122,101 @@
 
     <main id="posts">
       <!-- ====== 新しい記事は、この <main> の先頭にコピペ追加してください ====== -->
-      <!-- サンプル記事（タイトル・日付・本文・画像・動画を差し替えるだけ） -->
-      <article class="post" id="post-20250915-m1-sample">
-        <h3>ウェブサイトを作りました。</h3>
-        <time datetime="2025-09-14">2025-09-14</time>
 
-        <p class="lede">
-          導入（3〜4行以内）。どんなネタか、なぜ取り上げたか、全体の印象を簡潔に。
-        </p>
+      <details class="post" id="post-20250915">
+        <!-- summary は下のスクリプトで自動生成されます -->
+        <div class="post-body">
+          <h3>記事２</h3>
+          <time datetime="2025-09-14">2025-09-14</time>
 
+          <p class="lede">
+            導入（3〜4行以内）。どんなネタか、なぜ取り上げたか、全体の印象を簡潔に。
+          </p>
 
-        <h4>ネタの概要</h4>
-        <ul>
-          <li>設定：……</li>
-          <li>登場人物：……</li>
-          <li>オチ（ネタバレ注意なら <code>&lt;details&gt;</code> を使う）：……</li>
-        </ul>
+          <h4>ネタの概要</h4>
+          <ul>
+            <li>設定：……</li>
+            <li>登場人物：……</li>
+            <li>オチ（ネタバレ注意なら <code>&lt;details&gt;</code> を使う）：……</li>
+          </ul>
 
-        <!-- ネタバレを畳む例（必要なければ削除） -->
-        <details>
-          <summary>オチを表示（ネタバレ）</summary>
-          <p>ここに詳しいオチや伏線回収の説明。</p>
-        </details>
+          <!-- ネタバレを畳む例（必要なければ削除） -->
+          <details>
+            <summary>オチを表示（ネタバレ）</summary>
+            <p>ここに詳しいオチや伏線回収の説明。</p>
+          </details>
 
-        <h4>好きだったポイント（Best Bits）</h4>
-        <ol>
-          <li>ツッコミの言い換えが◯◯（具体例）</li>
-          <li>伏線回収が◯◯で気持ちいい</li>
-          <li>間（ポーズ）の取り方が科学的に見ると◯◯</li>
-        </ol>
+          <h4>好きだったポイント（Best Bits）</h4>
+          <ol>
+            <li>ツッコミの言い換えが◯◯（具体例）</li>
+            <li>伏線回収が◯◯で気持ちいい</li>
+            <li>間（ポーズ）の取り方が科学的に見ると◯◯</li>
+          </ol>
 
-        <blockquote>
-          印象に残ったフレーズややり取り（10〜40文字程度）
-        </blockquote>
+          <blockquote>
+            印象に残ったフレーズややり取り（10〜40文字程度）
+          </blockquote>
 
-        <h4>分析（構造・リズム・伏線）</h4>
-        <p>
-          導入→展開→ずらし→回収、比喩の反復、言い換えチェーン、緊張と緩和の周期などを簡潔に。
-        </p>
+          <h4>分析（構造・リズム・伏線）</h4>
+          <p>
+            導入→展開→ずらし→回収、比喩の反復、言い換えチェーン、緊張と緩和の周期などを簡潔に。
+          </p>
 
-        <h4>メモ</h4>
-        <p>
-          自分用メモ／次回見返すポイント／関連するネタ。
-        </p>
-
-
-      <!-- サンプル記事（タイトル・日付・本文・画像・動画を差し替えるだけ） -->
-      <article class="post" id="post-20250914-m1-sample">
-        <h3>ウェブサイトを作りました。</h3>
-        <time datetime="2025-09-14">2025-09-14</time>
-
-        <p class="lede">
-          導入（3〜4行以内）。どんなネタか、なぜ取り上げたか、全体の印象を簡潔に。
-        </p>
+          <h4>メモ</h4>
+          <p>
+            自分用メモ／次回見返すポイント／関連するネタ。
+          </p>
 
 
-        <h4>ネタの概要</h4>
-        <ul>
-          <li>設定：……</li>
-          <li>登場人物：……</li>
-          <li>オチ（ネタバレ注意なら <code>&lt;details&gt;</code> を使う）：……</li>
-        </ul>
 
-        <!-- ネタバレを畳む例（必要なければ削除） -->
-        <details>
-          <summary>オチを表示（ネタバレ）</summary>
-          <p>ここに詳しいオチや伏線回収の説明。</p>
-        </details>
 
-        <h4>好きだったポイント（Best Bits）</h4>
-        <ol>
-          <li>ツッコミの言い換えが◯◯（具体例）</li>
-          <li>伏線回収が◯◯で気持ちいい</li>
-          <li>間（ポーズ）の取り方が科学的に見ると◯◯</li>
-        </ol>
+      <!-- サンプル記事（クリックで展開：タイトル・日付・本文・画像・動画を差し替え） -->
+      <details class="post" id="post-20250914-m1-sample">
+        <!-- summary は下のスクリプトで自動生成されます -->
+        <div class="post-body">
+          <h3>【ネタ名／番組名】ひとことで要約のキャッチ</h3>
+          <time datetime="2025-09-14">2025-09-14</time>
 
-        <blockquote>
-          印象に残ったフレーズややり取り（10〜40文字程度）
-        </blockquote>
+          <p class="lede">
+            導入（3〜4行以内）。どんなネタか、なぜ取り上げたか、全体の印象を簡潔に。
+          </p>
 
-        <h4>分析（構造・リズム・伏線）</h4>
-        <p>
-          導入→展開→ずらし→回収、比喩の反復、言い換えチェーン、緊張と緩和の周期などを簡潔に。
-        </p>
+          <h4>ネタの概要</h4>
+          <ul>
+            <li>設定：……</li>
+            <li>登場人物：……</li>
+            <li>オチ（ネタバレ注意なら <code>&lt;details&gt;</code> を使う）：……</li>
+          </ul>
 
-        <h4>メモ</h4>
-        <p>
-          自分用メモ／次回見返すポイント／関連するネタ。
-        </p>
+          <!-- ネタバレを畳む例（必要なければ削除） -->
+          <details>
+            <summary>オチを表示（ネタバレ）</summary>
+            <p>ここに詳しいオチや伏線回収の説明。</p>
+          </details>
 
-      <!-- ====== ここまでサンプル。以降、同じ <article class="post"> を複製して使う ====== -->
+          <h4>好きだったポイント（Best Bits）</h4>
+          <ol>
+            <li>ツッコミの言い換えが◯◯（具体例）</li>
+            <li>伏線回収が◯◯で気持ちいい</li>
+            <li>間（ポーズ）の取り方が科学的に見ると◯◯</li>
+          </ol>
+
+          <blockquote>
+            印象に残ったフレーズややり取り（10〜40文字程度）
+          </blockquote>
+
+          <h4>分析（構造・リズム・伏線）</h4>
+          <p>
+            導入→展開→ずらし→回収、比喩の反復、言い換えチェーン、緊張と緩和の周期などを簡潔に。
+          </p>
+
+          <h4>メモ</h4>
+          <p>
+            自分用メモ／次回見返すポイント／関連するネタ。
+          </p>
+
+
+      <!-- ====== ここまでサンプル。以降、同じ <details class="post"> を複製して使う ====== -->
     </main>
 
     <footer>© <span id="year"></span> Yuiki Takahashi</footer>
@@ -186,8 +235,56 @@
       document.documentElement.setAttribute('data-theme',savedTheme);
     })();
 
-    // Year in footer
-    document.getElementById('year').textContent=new Date().getFullYear();
+    // Build summaries for collapsible posts + extras
+    (function(){
+      const posts = document.querySelectorAll('details.post');
+      posts.forEach(d => {
+        if (d.querySelector('summary')) return; // already has one
+        const body = d.querySelector('.post-body');
+        if (!body) return;
+
+        const titleEl = body.querySelector('h3');
+        const timeEl  = body.querySelector('time');
+        const ledeEl  = body.querySelector('.lede') || body.querySelector('p');
+
+        const title = titleEl ? titleEl.innerHTML : '(無題)';
+        const timeHTML = timeEl ? `<time datetime="${timeEl.getAttribute('datetime')||''}">${timeEl.textContent}</time>` : '';
+        const ledeText = ledeEl ? ledeEl.textContent.trim() : '';
+        const excerpt = ledeText.length > 140 ? (ledeText.slice(0, 140) + '…') : ledeText;
+
+        const summary = document.createElement('summary');
+        summary.innerHTML = `
+          <div class="post-head">
+            <h3>${title}</h3>
+            ${timeHTML}
+          </div>
+          <p class="excerpt">${excerpt}</p>
+        `;
+        d.insertBefore(summary, body);
+      });
+
+      // Open a post if URL has a hash (#post-...)
+      const id = decodeURIComponent(location.hash.slice(1));
+      if (id) {
+        const target = document.getElementById(id);
+        if (target && target.tagName.toLowerCase() === 'details') {
+          target.open = true;
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      }
+
+      // Accordion: allow only one open at a time
+      document.getElementById('posts')?.addEventListener('toggle', (e)=>{
+        const opened = e.target;
+        if (opened.tagName.toLowerCase() !== 'details' || !opened.open) return;
+        document.querySelectorAll('details.post[open]').forEach(d=>{
+          if (d !== opened) d.open = false;
+        });
+      });
+
+      // Footer year
+      document.getElementById('year').textContent=new Date().getFullYear();
+    })();
   </script>
 </body>
 </html>
