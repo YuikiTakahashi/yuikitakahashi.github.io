@@ -504,6 +504,14 @@
       setInterval(createParticle, SPAWN_MS);
     })();
 
+    (function highlightMyName(){
+      // Only wrap if not already wrapped
+      document.querySelectorAll('.pub-authors').forEach(el=>{
+        if (el.querySelector('.me')) return;
+        el.innerHTML = el.innerHTML.replace(/Yuiki\s+Takahashi/g,
+          '<span class="me">Yuiki Takahashi</span>');
+      });
+    })();
   </script>
 </body>
 </html>
