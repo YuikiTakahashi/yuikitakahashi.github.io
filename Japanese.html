@@ -4,32 +4,46 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>日本語ブログ | Yuiki Takahashi</title>
-  <meta name="description" content="タイトルと日付のみ先に見せる、静かなアコーディオン式ブログ。美しく、クールに。" />
+  <meta name="description" content="タイトルと日付だけ先に見せる、静かなアコーディオン式ブログ。美しく、クールに。" />
   <link rel="icon" href="data:," />
   <style>
-    /* ====== Elegant / Calm ====== */
+    /* ====== Elegant / Calm (Light as default) ====== */
     :root{
+      --bg: #ffffff;
+      --panel: #fafafa;
+      --panel-2: #f5f7fb;
+      --ink: #1a1a1a;
+      --muted: #61708a;
+      --line: #e5e7eb;
+      --accent: #0ea5e9;   /* cyan */
+      --accent-2: #7c3aed; /* violet */
+      --radius: 14px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.06);
+      --shadow-md: 0 10px 24px rgba(0,0,0,.08);
+      --maxw: 920px;
+    }
+    /* Dark theme (toggle) */
+    [data-theme="dark"]{
       --bg: #0c0f14;
       --panel: #101622;
       --panel-2: #0e1420;
       --ink: #e6e8ef;
       --muted: #a6adbb;
       --line: #1e2635;
-      --accent: #7dd3fc;  /* cool cyan */
-      --accent-2: #a78bfa;/* violet */
-      --radius: 14px;
+      --accent: #7dd3fc;
+      --accent-2: #a78bfa;
       --shadow-sm: 0 1px 3px rgba(0,0,0,.25);
       --shadow-md: 0 10px 24px rgba(0,0,0,.35);
-      --maxw: 920px;
     }
+
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{
       font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
       background:
-        radial-gradient(800px 480px at 10% -10%, rgba(167,139,250,.12), transparent 60%),
-        radial-gradient(900px 520px at 90% 0%, rgba(125,211,252,.10), transparent 60%),
-        linear-gradient(180deg, #0b111b, #0b0e14 60%, #0b0e14);
+        radial-gradient(800px 480px at 10% -10%, rgba(124,58,237,.05), transparent 60%),
+        radial-gradient(900px 520px at 90% 0%, rgba(14,165,233,.06), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--panel-2) 60%, var(--bg));
       color: var(--ink);
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
@@ -40,27 +54,33 @@
     /* ====== Top Bar ====== */
     .wrap{max-width: var(--maxw); margin: 0 auto;}
     .topbar{
-      display:flex; align-items:center; justify-content:space-between;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
       background: linear-gradient(180deg, var(--panel), var(--panel-2));
       border:1px solid var(--line); border-radius: var(--radius);
-      padding: 12px 14px; box-shadow: var(--shadow-sm);
+      padding: 10px 12px; box-shadow: var(--shadow-sm);
     }
+    .left, .right{ display:flex; align-items:center; gap:8px; }
     .home-btn{
       display:inline-flex; align-items:center; gap:8px;
       text-decoration:none; color:var(--ink);
-      background: linear-gradient(90deg, rgba(125,211,252,.15), rgba(167,139,250,.12));
+      background: linear-gradient(90deg, rgba(14,165,233,.10), rgba(124,58,237,.10));
       border:1px solid var(--line); border-radius: 999px;
-      padding: 8px 12px; font-size: 14px; font-weight: 600;
+      padding: 8px 12px; font-size: 14px; font-weight: 700;
     }
-    .home-btn:focus-visible{ outline:2px solid rgba(125,211,252,.45); outline-offset:2px; }
     .title{
       font-weight:800; letter-spacing:.3px; font-size:16px; color:var(--ink);
       opacity:.9;
     }
-
-    header{
-      text-align:center; margin: 18px 0 6px;
+    .theme-toggle{
+      border:1px solid var(--line); border-radius:999px; background:var(--bg);
+      color:var(--ink); padding:8px 12px; font-size:13px; cursor:pointer;
     }
+    .search{
+      border:1px solid var(--line); border-radius:999px; background:var(--bg);
+      color:var(--ink); padding:8px 12px; font-size:13px; width:190px;
+    }
+
+    header{text-align:center; margin: 18px 0 6px;}
     header h1{
       font-size:28px; font-weight:900; letter-spacing:.4px;
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
@@ -72,13 +92,13 @@
     main{ margin-top: 18px; }
 
     details.post{
-      background: linear-gradient(180deg, rgba(16,22,34, .85), rgba(14,20,32,.9));
+      background: linear-gradient(180deg, var(--panel), var(--panel-2));
       border:1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: var(--shadow-sm);
       margin: 12px 0;
       overflow: hidden;
-      /* NO transitions/animations to avoid “揺れ” */
+      /* NO transitions/animations */
     }
 
     /* Summary row: ALWAYS visible (Title + Date + one-line excerpt) */
@@ -95,23 +115,21 @@
     details.post > summary::-webkit-details-marker{ display:none; }
 
     .headline{
-      display:flex; gap:10px; align-items:baseline; flex-wrap:wrap;
-      min-width:0;
+      display:flex; gap:10px; align-items:baseline; flex-wrap:wrap; min-width:0;
     }
     .headline h3{
       font-size:18px; font-weight:800; color:var(--ink); margin:0;
       text-decoration: underline;
       text-decoration-thickness: 4px;
       text-underline-offset: 8px;
-      text-decoration-color: rgba(125,211,252,.18);
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-      max-width: 100%;
+      text-decoration-color: rgba(14,165,233,.18);
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width: 100%;
     }
     .date{
       font-size:12.5px; color:var(--muted);
       padding: 2px 8px; border-radius: 999px;
       border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(125,211,252,.07), rgba(167,139,250,.06));
+      background: linear-gradient(180deg, rgba(14,165,233,.07), rgba(124,58,237,.06));
     }
 
     .excerpt{
@@ -121,7 +139,7 @@
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
 
-    /* Arrow indicator: no animation—just swaps glyph */
+    /* Arrow indicator: static glyph (no animation) */
     details.post > summary::after{
       content: "▸";
       color: var(--muted);
@@ -148,8 +166,8 @@
     }
 
     /* Focus styles (keyboard friendly) */
-    summary:focus-visible{
-      outline: 2px solid rgba(125,211,252,.45);
+    summary:focus-visible, .home-btn:focus-visible, .theme-toggle:focus-visible, .search:focus-visible{
+      outline: 2px solid rgba(14,165,233,.45);
       outline-offset: 2px;
       border-radius: 10px;
     }
@@ -157,15 +175,22 @@
     /* Mobile tweaks */
     @media (max-width: 560px){
       .headline h3{ max-width: 100%; }
+      .search{ width: 130px; }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <!-- Top bar with absolute must-have Home button -->
+    <!-- Top bar with must-have Home button + theme toggle + live search -->
     <div class="topbar">
-      <a class="home-btn" href="index.html" aria-label="ホームに戻る">← Home</a>
-      <div class="title">Japanese Blog</div>
+      <div class="left">
+        <a class="home-btn" href="index.html" aria-label="ホームに戻る">← Home</a>
+        <div class="title">Japanese Blog</div>
+      </div>
+      <div class="right">
+        <input id="search" class="search" type="search" placeholder="検索…" aria-label="記事検索">
+        <button id="themeBtn" class="theme-toggle" type="button" aria-label="テーマ切替">🌞 Light</button>
+      </div>
     </div>
 
     <header>
@@ -254,7 +279,55 @@
   </div>
 
   <script>
-    // 余計な動きは入れません。必要最低限のユーティリティのみ。
+    // ===== Theme: default LIGHT, with toggle persistence =====
+    (function initTheme(){
+      const saved = localStorage.getItem('theme');
+      const theme = saved === 'dark' ? 'dark' : 'light'; // default light
+      document.documentElement.setAttribute('data-theme', theme);
+      const btn = document.getElementById('themeBtn');
+      btn.textContent = theme === 'dark' ? '🌙 Dark' : '🌞 Light';
+    })();
+
+    document.getElementById('themeBtn').addEventListener('click', ()=>{
+      const cur = document.documentElement.getAttribute('data-theme') || 'light';
+      const next = cur === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      document.getElementById('themeBtn').textContent = next === 'dark' ? '🌙 Dark' : '🌞 Light';
+    });
+
+    // ===== Live search (title + excerpt + body) =====
+    const searchEl = document.getElementById('search');
+    const posts = Array.from(document.querySelectorAll('details.post'));
+    function normalize(s){ return (s || '').toLowerCase().replace(/\s+/g,' ').trim(); }
+    function textOf(node){
+      return node ? node.textContent || '' : '';
+    }
+    function filter(){
+      const q = normalize(searchEl.value);
+      posts.forEach(d=>{
+        if(!q){ d.hidden = false; return; }
+        const title = textOf(d.querySelector('.headline h3'));
+        const excerpt = textOf(d.querySelector('.excerpt'));
+        const body = textOf(d.querySelector('.post-body'));
+        const hay = normalize(title + ' ' + excerpt + ' ' + body);
+        d.hidden = !hay.includes(q);
+      });
+    }
+    searchEl.addEventListener('input', filter);
+
+    // ===== Open by hash (#post-...) =====
+    (function openByHash(){
+      const id = decodeURIComponent(location.hash.slice(1));
+      if(!id) return;
+      const target = document.getElementById(id);
+      if(target && target.tagName.toLowerCase()==='details'){
+        target.open = true;
+        target.scrollIntoView({behavior:'instant', block:'start'});
+      }
+    })();
+
+    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
